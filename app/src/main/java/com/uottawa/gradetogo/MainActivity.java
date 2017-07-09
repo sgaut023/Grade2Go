@@ -17,9 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.R.attr.duration;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,11 +33,12 @@ public class MainActivity extends AppCompatActivity
     private ArrayAdapter<Semester> adapter;
     private ListView list;
     private static Context mContext;
-
+    int deletetime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button waste_btn = (Button) findViewById(R.id.toolbar_overflow_menu_button);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -59,8 +65,60 @@ public class MainActivity extends AppCompatActivity
 
         //populate the listview
         populateListView();
+        waste_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //SelectSemestertoRemove();
+                deletetime = 1;
+                int duration = Toast.LENGTH_SHORT;
+                Toast.makeText(getApplicationContext(), "Select the semester to remove", duration).show();
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        int postion = list.getPositionForView(view);
+                        System.out.println("postion selected is : "+postion);
+                        if(deletetime == 1) {
+                            Delete(postion);
+                            deletetime = 0;
+                        }
+                        else{
+                            System.out.println("postion selected is : "+postion);
+                        }
+
+                    }
+                });
+            }
+        });
+
+    }
+
+    public void SelectSemestertoRemove(){
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getApplicationContext(), "Select the semester to remove", duration);
+        new View.OnClickListener() {
+            public void onClick(View v) {
+                int postion = list.getPositionForView(v);
+                System.out.println("postion selected is : "+postion);
+                Delete(postion);
+            }
+        };
+    }
+
+    public void Delete(int position) {
+        if (adapter.getCount() > 0) {
+
+            //Log.d("largest no is",""+largestitemno);
+            //deleting the latest added by subtracting one 1
+            Semester Sem_remove = (Semester) adapter.getItem(position);
+            adapter.remove(Sem_remove);
+            adapter.notifyDataSetChanged();
+        } else {
+            int duration = Toast.LENGTH_SHORT;
+            //for showing nothing is left in the list
+            Toast toast = Toast.makeText(getApplicationContext(), "Db is empty", duration);
 
 
+            toast.show();
+        }
     }
 
     private void populateListView() {
@@ -122,14 +180,14 @@ public class MainActivity extends AppCompatActivity
             Semester currentSemester = Singleton.getSingleton().getSemesters().get(position);
 
             //set the right background
-            if(currentSemester.getSeason()== "SUMMER") {
-                itemView.setBackgroundResource(R.drawable.background_color_green);
-            }
-            else if(currentSemester.getSeason()== "FALL") {
-                itemView.setBackgroundResource(R.drawable.ic_background_orange);
-            }else {
-                itemView.setBackgroundResource(R.drawable.background_color_grey);
-            }
+         //   if(currentSemester.getSeason()== "SUMMER") {
+         //       itemView.setBackgroundResource(R.drawable.background_color_green);
+         //   }
+         //   else if(currentSemester.getSeason()== "FALL") {
+         //       itemView.setBackgroundResource(R.drawable.ic_background_orange);
+          //  }else {
+          //      itemView.setBackgroundResource(R.drawable.background_color_grey);
+          //  }
 
             // Make name Text
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_semester);
