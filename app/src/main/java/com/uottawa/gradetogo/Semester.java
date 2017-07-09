@@ -12,8 +12,8 @@ public class Semester {
     private int numCourse;
 
     public Semester(String season, String year) {
-        this.season = season;
-        this.year = year;
+        this.season = season.toUpperCase();
+        this.year = year.toUpperCase();
         numCourse= 0;
     }
 
