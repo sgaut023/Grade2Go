@@ -116,19 +116,18 @@ public class MainActivity extends AppCompatActivity
                 itemView = getLayoutInflater().inflate(R.layout.semesters_list, parent, false);
             }
 
-            itemView.setBackgroundResource(R.drawable.background_color_green);
 
             //find the semester
             Semester currentSemester = Singleton.getSingleton().getSemesters().get(position);
 
             //set the right background
-            if(currentSemester.getSeason()== "SUMMER") {
-                itemView.setBackgroundResource(R.drawable.background_color_green);
+            if(currentSemester.getSeason().equals("SUMMER")) {
+                itemView.setBackgroundResource(R.drawable.app_splash_green);
             }
-            else if(currentSemester.getSeason()== "FALL") {
-                itemView.setBackgroundResource(R.drawable.ic_background_orange);
-            }else {
-                itemView.setBackgroundResource(R.drawable.background_color_grey);
+            else if(currentSemester.getSeason().equals("FALL")) {
+                itemView.setBackgroundResource(R.drawable.app_splash_orange);
+            }else if (currentSemester.getSeason().equals("WINTER"))  {
+                itemView.setBackgroundResource(R.drawable.app_splash_blue);
             }
 
             // Make name Text
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity
 
 
             TextView courseText = (TextView) itemView.findViewById(R.id.txt_course_number);
-            courseText.setText("Number of courses: "+currentSemester.getnumCourse());
+            courseText.setText("Number of course: "+currentSemester.getnumCourse());
             return itemView;
 
 

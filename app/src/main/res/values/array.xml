@@ -5,6 +5,7 @@
         <item>WINTER</item>
         <item>SUMMER</item>
     </string-array>
+
     <string-array name="add_semester_year">
         <item>2017</item>
         <item>2018</item>

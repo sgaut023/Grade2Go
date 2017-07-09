@@ -26,10 +26,12 @@
             android:textSize="18sp" />
 
         <Spinner
-            android:id="@+id/spinner6"
+            android:id="@+id/spinner_season"
+            style="@android:style/Widget.Holo.Light.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:entries="@array/add_semester_season_list" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,32 +42,38 @@
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="168dp"
+            android:layout_width="173dp"
             android:layout_height="wrap_content"
             android:text="Year:"
             android:textSize="18sp" />
 
         <Spinner
-            android:id="@+id/spinner7"
+            android:id="@+id/spinner_year"
+            style="@android:style/Widget.Holo.Light.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:entries="@array/add_semester_year" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="30dp">
+        android:paddingLeft="115dp"
+        android:paddingRight="115dp"
+        android:paddingTop="60dp">
 
         <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.55"
-            android:background="@color/colorPrimary"
-            android:text="Save" />
+            android:id="@+id/btn_save_semester"
+            android:layout_width="100dp"
+            android:layout_height="33dp"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="24dp"
+            android:text="Save"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
 </LinearLayout>

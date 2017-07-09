@@ -4,7 +4,6 @@
         android:layout_width="match_parent"
         android:layout_height="116dp"
         android:layout_margin="0dp"
-        android:background="@drawable/background_color_green"
         android:orientation="vertical"
         android:paddingLeft="20dp">
 
