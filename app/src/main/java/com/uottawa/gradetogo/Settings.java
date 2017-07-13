@@ -11,26 +11,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-<<<<<<< HEAD
-
-public class Settings extends AppCompatActivity {
-
-=======
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 
+
+
 public class Settings extends AppCompatActivity {
-    public  Button save_btn ;
+    public Button save_btn ;
     public Spinner spn_univ;
->>>>>>> settings
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-<<<<<<< HEAD
-=======
+
         save_btn = (Button) findViewById(R.id.btn_save_setting);
         spn_univ = (Spinner) findViewById(R.id.spin_uni);
 
@@ -41,7 +37,7 @@ public class Settings extends AppCompatActivity {
                 Singleton.getSingleton().setUniversity(pos);
             }
         });
->>>>>>> settings
+
 
     }
 
