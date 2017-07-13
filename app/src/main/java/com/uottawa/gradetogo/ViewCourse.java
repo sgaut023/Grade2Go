@@ -19,17 +19,21 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ViewCourse extends AppCompatActivity {
 
     private String gradeLetter;
     private int position;
     private int positionSemestre;
     private String name;
-    private ArrayAdapter<Integer> adapter;
+    private ArrayAdapter<Double> adapter;
     private ListView list;
     private static Context mContext;
     int deletetime = 0;
     Course currentCourse;
+    private ArrayList<Double> midterms;
+
 
 
 
@@ -51,10 +55,6 @@ public class ViewCourse extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //populatelistView
-       populateListView();
-
-
         // take the course info position
         Intent intent = getIntent();
         position =  Integer.parseInt(intent.getStringExtra("position"));
@@ -62,6 +62,13 @@ public class ViewCourse extends AppCompatActivity {
 
         //find the course in question
         currentCourse = Singleton.getSingleton().getSemesters().get(positionSemestre).getCourse().get(position);
+        midterms = currentCourse.getMidterms();
+
+        //populatelistView
+        populateListView();
+
+
+
 
         // This is how to change TextView dynamically
         //populate the goal
@@ -88,6 +95,10 @@ public class ViewCourse extends AppCompatActivity {
         //change the picture of each recipe
         ImageView img= (ImageView) findViewById(R.id.defaultRecipeImage);
         img.setImageURI(currentCourse.getIconId());
+
+
+        //Toast.makeText( ViewCourse.this, ""+ midterms.get(1), Toast.LENGTH_LONG).show();
+
 
 
 
@@ -123,10 +134,10 @@ public class ViewCourse extends AppCompatActivity {
 
     }
 
-    private class MyListAdapter extends ArrayAdapter<Integer> {
+    private class MyListAdapter extends ArrayAdapter<Double> {
 
         public MyListAdapter() {
-            super(ViewCourse.this, R.layout.list_evaluation, Singleton.getSingleton().getSemesters().get(positionSemestre).getCourse().get(position).getMidterms());
+            super(ViewCourse.this, R.layout.list_evaluation, (ArrayList<Double>)midterms);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -140,8 +151,8 @@ public class ViewCourse extends AppCompatActivity {
 
 
             // Make name Text
-            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
-            nameText.setText("Midterm "+ (position+1) +":");
+            //TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            //nameText.setText("Midterm "+ (position+1) +":");
 
             //TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
             //gradeText.setText(""+ currentCourse.getMidterms().get(position)+"%");
