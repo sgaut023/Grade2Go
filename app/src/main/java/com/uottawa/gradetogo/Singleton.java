@@ -1,5 +1,7 @@
 package com.uottawa.gradetogo;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 
 /**
@@ -12,11 +14,22 @@ public class Singleton {
     private static Singleton singleton; // l'instance du Singleton
     private ArrayList<Semester> semesters;
 
+    //les photos par defauts
+    private Uri defaultImageA = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default");
+    private Uri defaultImageB = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default2");
+    private Uri defaultImageC = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default3");
+
+
     private Singleton() {
         semesters = new ArrayList<Semester>();
         semesters.add(new Semester("FALL", "2017"));
         semesters.add(new Semester("SUMMER", "2017"));
         semesters.add(new Semester("Winter", "2017"));
+
+
+        semesters.get(0).addCourse(new Course("CSI 3581", 90, defaultImageA ));
+        semesters.get(0).addCourse(new Course("SEG 3685", 100, defaultImageB));
+        semesters.get(0).addCourse(new Course("SEG 3585", 70, defaultImageC));
 
 
     }
@@ -29,6 +42,7 @@ public class Singleton {
         return singleton;
 
     }
+
 
     public ArrayList<Semester> getSemesters() {
         return semesters;

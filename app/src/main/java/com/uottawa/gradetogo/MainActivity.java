@@ -24,8 +24,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static android.R.attr.duration;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity
 
         //initialisation du singleton
         Singleton.getSingleton();
+        registerClickCallBack();
 
         //populate the listview
         populateListView();
@@ -91,6 +90,32 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+
+
+    //methode ajouter pour clicker sur les items sune liste
+    private void registerClickCallBack(){
+
+        ListView list = (ListView) findViewById(R.id.listViewSemester);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View viewClick, int position, long id){
+                Semester clickedSemester = Singleton.getSingleton().getSemesters().get(position);
+                Intent i = new Intent(MainActivity.this, Courses.class);
+
+                //envoyer info a activity qui affiche cours
+                i.putExtra("semesterSeason", clickedSemester.getSeason());
+                i.putExtra("semesterYear", clickedSemester.getYear());
+                i.putExtra("Position", position+"");
+                Toast.makeText( MainActivity.this, ""+position , Toast.LENGTH_LONG).show();
+                //  start the activity
+                startActivity(i);
+
+
+            }
+        });
+
+    }
     public void SelectSemestertoRemove(){
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(getApplicationContext(), "Select the semester to remove", duration);
@@ -178,17 +203,7 @@ public class MainActivity extends AppCompatActivity
             //find the semester
             Semester currentSemester = Singleton.getSingleton().getSemesters().get(position);
 
-            //set the right background
-<<<<<<< HEAD
-         //   if(currentSemester.getSeason()== "SUMMER") {
-         //       itemView.setBackgroundResource(R.drawable.background_color_green);
-         //   }
-         //   else if(currentSemester.getSeason()== "FALL") {
-         //       itemView.setBackgroundResource(R.drawable.ic_background_orange);
-          //  }else {
-          //      itemView.setBackgroundResource(R.drawable.background_color_grey);
-          //  }
-=======
+
             if(currentSemester.getSeason().equals("SUMMER")) {
                 itemView.setBackgroundResource(R.drawable.app_splash_green);
             }
@@ -197,7 +212,6 @@ public class MainActivity extends AppCompatActivity
             }else if (currentSemester.getSeason().equals("WINTER"))  {
                 itemView.setBackgroundResource(R.drawable.app_splash_blue);
             }
->>>>>>> Addsemester
 
             // Make name Text
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_semester);
@@ -205,7 +219,7 @@ public class MainActivity extends AppCompatActivity
 
 
             TextView courseText = (TextView) itemView.findViewById(R.id.txt_course_number);
-            courseText.setText("Number of course: "+currentSemester.getnumCourse());
+            courseText.setText("Number of course: "+currentSemester.getNumCourse());
             return itemView;
 
 
@@ -219,7 +233,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_help) {

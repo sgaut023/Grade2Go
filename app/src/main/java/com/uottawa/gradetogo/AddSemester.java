@@ -2,6 +2,7 @@ package com.uottawa.gradetogo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -36,11 +37,16 @@ public class AddSemester extends AppCompatActivity {
                 if(Singleton.getSingleton().isSemesterExisting(currentSemester)) {
                     Singleton.getSingleton().addSemester(currentSemester);
                     //afficher que le semestre a ete sauver
+
                     Toast.makeText( AddSemester.this, "Semester was saved successfully" , Toast.LENGTH_LONG).show();
                     Intent a = new Intent(AddSemester.this, MainActivity.class);
                     startActivity(a);
                 }else{
-                    Toast.makeText( AddSemester.this, "This semester is already created." , Toast.LENGTH_LONG).show();
+
+                    Snackbar snackbar = Snackbar
+                            .make(v, "The semester already exists." , Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
 
                 }
 
