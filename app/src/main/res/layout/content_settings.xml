@@ -34,7 +34,7 @@
         android:paddingTop="20dp">
 
         <Spinner
-            android:id="@+id/spinner_season"
+            android:id="@+id/spin_uni"
             style="@android:style/Widget.Holo.Light.Spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
