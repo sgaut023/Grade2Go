@@ -16,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.view.View.MeasureSpec;
 
 import java.util.ArrayList;
 
@@ -129,10 +131,20 @@ public class ViewCourse extends AppCompatActivity {
     private void populateListView() {
 
         adapter = new MyListAdapter();
-        list = (ListView) findViewById(R.id.listViewEvaluations);
+        list = (ListView) findViewById(R.id.ListViewQuiz);
         list.setAdapter(adapter);
 
+        adapter = new MyListAdapter1();
+        list = (ListView) findViewById(R.id.ListViewFinal);
+        list.setAdapter(adapter);
+
+       // adapter = new MyListAdapter2();
+       // list = (ListView) findViewById(R.id.ListViewMidterm);
+       // list.setAdapter(adapter);
+
     }
+
+
 
     private class MyListAdapter extends ArrayAdapter<Double> {
 
@@ -149,18 +161,98 @@ public class ViewCourse extends AppCompatActivity {
                 itemView = getLayoutInflater().inflate(R.layout.list_evaluation, parent, false);
             }
 
-
             // Make name Text
-            //TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
-            //nameText.setText("Midterm "+ (position+1) +":");
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            nameText.setText("Midterm "+ (position+1) +":");
 
-            //TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            //gradeText.setText(""+ currentCourse.getMidterms().get(position)+"%");
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            gradeText.setText(""+ currentCourse.getMidterms().get(position)+"%");
             return itemView;
 
 
         }
 
+    }
+
+    private class MyListAdapter1 extends ArrayAdapter<Double> {
+
+        public MyListAdapter1() {
+            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getFinals());
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public @NonNull
+        View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.list_evaluation, parent, false);
+            }
+
+            // Make name Text
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            nameText.setText("Final "+ (position+1) +":");
+
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            gradeText.setText(""+ currentCourse.getFinals().get(position)+"%");
+            return itemView;
+
+
+        }
+
+    }
+
+    private class MyListAdapter2 extends ArrayAdapter<Double> {
+
+        public MyListAdapter2() {
+            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getQuizzes());
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public @NonNull
+        View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.list_evaluation, parent, false);
+            }
+
+            // Make name Text
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            nameText.setText("Quiz "+ (position+1) +":");
+
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            gradeText.setText(""+ currentCourse.getQuizzes().get(position)+"%");
+            return itemView;
+
+
+        }
+
+    }
+
+
+    /**
+     * Set listview height based on listview children
+     *
+     * @param listView
+     */
+    public static void setDynamicHeight(ListView listView) {
+        ListAdapter adapter = listView.getAdapter();
+        //check adapter if null
+        if (adapter == null) {
+            return;
+        }
+        int height = 0;
+        int desiredWidth = MeasureSpec.makeMeasureSpec(listView.getWidth(), MeasureSpec.UNSPECIFIED);
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, listView);
+            listItem.measure(desiredWidth, MeasureSpec.UNSPECIFIED);
+            height += listItem.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams layoutParams = listView.getLayoutParams();
+        layoutParams.height = height + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(layoutParams);
+        listView.requestLayout();
     }
     }
 

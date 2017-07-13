@@ -30,10 +30,15 @@ public class Course {
         this.goal = goal;
         this.iconId=iconId;
         midterms = new ArrayList<Double>();
+        midterms.add(45.0);
+        midterms.add(89.0);
         finals =new ArrayList<Double>();
+        finals.add(100.0);
         quizzes = new ArrayList<Double>();
+        quizzes.add(89.9);
         laboratories =new ArrayList<Double>();
         projects =new ArrayList<Double>();
+        projects.add(22.0);
         oralPresentations=new ArrayList<Double>();
         others=new ArrayList<Double>();
         gradeLetter="N/A";
