@@ -33,9 +33,20 @@ public class Settings extends AppCompatActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int pos = 0;
-                Singleton.getSingleton().setUniversity(pos);
+                switch (spn_univ.getSelectedItem().toString()){
+                    case "University of Ottawa" :
+                        Singleton.getSingleton().setUniversity(0);
+                        break;
+                    case "Carelton University" :
+                        Singleton.getSingleton().setUniversity(1);
+                        break;
+                    case "Université du Québec en Outaouais" :
+                        Singleton.getSingleton().setUniversity(2);
+                        break;
+                }
+
             }
+
         });
 
 
