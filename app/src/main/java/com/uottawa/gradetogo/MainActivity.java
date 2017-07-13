@@ -233,8 +233,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
         } else if (id == R.id.nav_settings) {
+            Intent i = new Intent(this, Settings.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_help) {
 
