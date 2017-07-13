@@ -16,7 +16,7 @@
         android:id="@+id/listViewCourse"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="10.0sp"
+        android:dividerHeight="5.0sp"
         android:elevation="10dp" />
 
 </LinearLayout>

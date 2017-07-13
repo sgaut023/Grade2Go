@@ -29,6 +29,7 @@ public class Semester {
 
     public void addCourse(Course course){
         courses.add(course);
+        numCourse++;
 
     }
 

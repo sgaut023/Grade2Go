@@ -17,57 +17,54 @@ public class Course {
     private double grade;
     private String gradeLetter ;
     private Uri iconId;
-    private ArrayList<Integer> midterms;
-    private ArrayList<Integer> finals;
-    private ArrayList<Integer> quizzes;
-    private ArrayList<Integer> laboratories;
-    private ArrayList<Integer> projects;
-    private ArrayList<Integer> oralPresentations;
-    private ArrayList<Integer> others;
+    private ArrayList<Double> midterms;
+    private ArrayList<Double> finals;
+    private ArrayList<Double> quizzes;
+    private ArrayList<Double> laboratories;
+    private ArrayList<Double> projects;
+    private ArrayList<Double> oralPresentations;
+    private ArrayList<Double> others;
 
     public Course(String name, int goal, Uri iconId) {
         this.name = name;
         this.goal = goal;
         this.iconId=iconId;
-        midterms = new ArrayList<Integer>();
-        midterms.add(54);
-        midterms.add(67);
-        finals =new ArrayList<Integer>();
-        finals.add(45);
-        quizzes = new ArrayList<Integer>();
-        laboratories =new ArrayList<Integer>();
-        projects =new ArrayList<Integer>();
-        oralPresentations=new ArrayList<Integer>();
-        others=new ArrayList<Integer>();
-        gradeLetter="---";
+        midterms = new ArrayList<Double>();
+        finals =new ArrayList<Double>();
+        quizzes = new ArrayList<Double>();
+        laboratories =new ArrayList<Double>();
+        projects =new ArrayList<Double>();
+        oralPresentations=new ArrayList<Double>();
+        others=new ArrayList<Double>();
+        gradeLetter="N/A";
 
     }
 
-    public ArrayList<Integer> getMidterms() {
+    public ArrayList<Double> getMidterms() {
         return midterms;
     }
 
-    public ArrayList<Integer> getFinals() {
+    public ArrayList<Double> getFinals() {
         return finals;
     }
 
-    public ArrayList<Integer> getQuizzes() {
+    public ArrayList<Double> getQuizzes() {
         return quizzes;
     }
 
-    public ArrayList<Integer> getLaboratories() {
+    public ArrayList<Double> getLaboratories() {
         return laboratories;
     }
 
-    public ArrayList<Integer> getProjects() {
+    public ArrayList<Double> getProjects() {
         return projects;
     }
 
-    public ArrayList<Integer> getOralPresentations() {
+    public ArrayList<Double> getOralPresentations() {
         return oralPresentations;
     }
 
-    public ArrayList<Integer> getOthers() {
+    public ArrayList<Double> getOthers() {
         return others;
     }
 
@@ -89,7 +86,7 @@ public class Course {
         return gradeLetter;
     }
 
-    public int getGoal() {
+    public double getGoal() {
         return goal;
     }
 }

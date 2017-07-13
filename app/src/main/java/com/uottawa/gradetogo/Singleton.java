@@ -44,6 +44,7 @@ public class Singleton {
     }
 
 
+
     public ArrayList<Semester> getSemesters() {
         return semesters;
     }

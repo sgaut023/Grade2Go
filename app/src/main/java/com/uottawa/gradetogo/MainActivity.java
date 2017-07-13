@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
                 i.putExtra("semesterSeason", clickedSemester.getSeason());
                 i.putExtra("semesterYear", clickedSemester.getYear());
                 i.putExtra("Position", position+"");
-                Toast.makeText( MainActivity.this, ""+position , Toast.LENGTH_LONG).show();
+                //Toast.makeText( MainActivity.this, ""+position , Toast.LENGTH_LONG).show();
                 //  start the activity
                 startActivity(i);
 
