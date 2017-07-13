@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="setting_university_list">
+        <item>University of Ottawa</item>
+        <item>Carelton University</item>
+        <item>Université du Québec en Outaouais</item>
+    </string-array>
+
     <string-array name="add_semester_season_list">
         <item>FALL</item>
         <item>WINTER</item>
