@@ -76,10 +76,9 @@ public class MainActivity extends AppCompatActivity
                 //SelectSemestertoRemove();
                 deletetime = 1;
                 Singleton.getSingleton().setUniversity(0);
-                final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id
-                        .maincoordinatorLayout);
+
                 Snackbar snackbar = Snackbar
-                        .make(coordinatorLayout, "Select the semester to remove", Snackbar.LENGTH_LONG);
+                        .make(v, "Select the semester to remove", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view,
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                             Delete(postion);
                             registerClickCallBack();
                             Snackbar snackbar = Snackbar
-                                    .make(coordinatorLayout, "The semester was successfully removed", Snackbar.LENGTH_LONG);
+                                    .make(view, "The semester was successfully removed", Snackbar.LENGTH_LONG);
                             snackbar.show();
                             deletetime = 0;
                         }
