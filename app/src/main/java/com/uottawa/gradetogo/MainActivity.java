@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     public DrawerLayout drawer ;
     int deletetime = 0;
+    int show = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,9 +89,11 @@ public class MainActivity extends AppCompatActivity
                         if(deletetime == 1) {
                             Delete(postion);
                             registerClickCallBack();
-                            Snackbar snackbar = Snackbar
-                                    .make(view, "The semester was successfully removed", Snackbar.LENGTH_LONG);
-                            snackbar.show();
+                            if(show == 1) {
+                                Snackbar snackbar = Snackbar
+                                        .make(view, "The semester was successfully removed", Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
                             deletetime = 0;
                         }
                         else{
@@ -182,6 +185,7 @@ public class MainActivity extends AppCompatActivity
 
             toast.show();
         }
+         show = 1;
     }
 
     private void populateListView() {

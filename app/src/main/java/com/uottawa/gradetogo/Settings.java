@@ -50,10 +50,6 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                 switch (spn_univ.getSelectedItem().toString()){
                     case "University of Ottawa" :
                         Singleton.getSingleton().setUniversity(0);
-                        Snackbar snackbar = Snackbar
-                                .make(coordinatorLayout, "University was successfully saved", Snackbar.LENGTH_LONG);
-
-                        snackbar.show();
                         break;
                     case "Carelton University" :
                         Singleton.getSingleton().setUniversity(1);
@@ -62,7 +58,10 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                         Singleton.getSingleton().setUniversity(2);
                         break;
                 }
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "University was successfully saved", Snackbar.LENGTH_LONG);
 
+                snackbar.show();
             }
 
         });
