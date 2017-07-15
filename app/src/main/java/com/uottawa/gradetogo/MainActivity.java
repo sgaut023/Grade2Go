@@ -1,16 +1,20 @@
 package com.uottawa.gradetogo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity
     private ArrayAdapter<Semester> adapter;
     private ListView list;
     private static Context mContext;
+    private ActionBarDrawerToggle toggle;
+    public DrawerLayout drawer ;
     int deletetime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +55,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         //initialisation du singleton
         Singleton.getSingleton();
         registerClickCallBack();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         //populate the listview
         populateListView();
@@ -68,19 +75,28 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 //SelectSemestertoRemove();
                 deletetime = 1;
-                int duration = Toast.LENGTH_SHORT;
-                Toast.makeText(getApplicationContext(), "Select the semester to remove", duration).show();
+                Singleton.getSingleton().setUniversity(0);
+                final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id
+                        .maincoordinatorLayout);
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "Select the semester to remove", Snackbar.LENGTH_LONG);
+                snackbar.show();
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                        int postion = list.getPositionForView(view);
+                        final int postion = list.getPositionForView(view);
                         System.out.println("postion selected is : "+postion);
                         if(deletetime == 1) {
                             Delete(postion);
+                            registerClickCallBack();
+                            Snackbar snackbar = Snackbar
+                                    .make(coordinatorLayout, "The semester was successfully removed", Snackbar.LENGTH_LONG);
+                            snackbar.show();
                             deletetime = 0;
                         }
                         else{
                             System.out.println("postion selected is : "+postion);
+                            registerClickCallBack();
                         }
 
                     }
@@ -128,14 +144,37 @@ public class MainActivity extends AppCompatActivity
         };
     }
 
-    public void Delete(int position) {
+    public void Delete(final int position) {
         if (adapter.getCount() > 0) {
 
             //Log.d("largest no is",""+largestitemno);
             //deleting the latest added by subtracting one 1
-            Semester Sem_remove = (Semester) adapter.getItem(position);
-            adapter.remove(Sem_remove);
-            adapter.notifyDataSetChanged();
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+            builder1.setMessage("Do you want to delete the selected semester ?");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Semester Sem_remove = (Semester) adapter.getItem(position);
+                            adapter.remove(Sem_remove);
+                            adapter.notifyDataSetChanged();
+                            dialog.cancel();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+;
         } else {
             int duration = Toast.LENGTH_SHORT;
             //for showing nothing is left in the list
@@ -177,11 +216,18 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toggle.syncState();
+    }
+
 
 
     private class MyListAdapter extends ArrayAdapter<Semester> {
