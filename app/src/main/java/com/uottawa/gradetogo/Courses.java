@@ -125,18 +125,25 @@ public class Courses extends AppCompatActivity {
             nameText.setText(course.getName());
 
             // Make grade Text
-            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_grade);
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_grade);
+            gradeLetterText.setText(Singleton.getSingleton().getGrade((int)course.getGrade())+"");
+
+            // Make grade Text
+            TextView gradeText = (TextView) itemView.findViewById(R.id. txt_list_grade);
             gradeText.setText(course.getGradeLetter()+"");
+
+            // Make grade Text
+            TextView goalText = (TextView) itemView.findViewById(R.id.txt_goal);
+            goalText.setText(Singleton.getSingleton().getGrade((int)course.getGoal())+"");
+
+            // Make grade Text
+            TextView goalLetterText = (TextView) itemView.findViewById(R.id. txt_list_grade_goal);
+            goalLetterText.setText(course.getGoal()+"");
+
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.item_icon);
             imageView.setImageURI(course.getIconId());
 
-
-            //make goal text
-            TextView goalText = (TextView) itemView.findViewById(R.id.txt_goal);
-            goalText.setText( course.getGoal()+"");
-
-            //make
 
 
             return itemView;
