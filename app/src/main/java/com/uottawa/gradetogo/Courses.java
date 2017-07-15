@@ -1,5 +1,6 @@
 package com.uottawa.gradetogo;
 
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -8,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,6 +38,8 @@ public class Courses extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     public DrawerLayout drawer ;
     public int show =0 ;
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -191,6 +195,7 @@ public class Courses extends AppCompatActivity
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -226,6 +231,7 @@ public class Courses extends AppCompatActivity
         toggle.syncState();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
