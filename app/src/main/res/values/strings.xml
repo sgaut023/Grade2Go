@@ -10,4 +10,5 @@
     <string name="title_activity_add_semester">Add Semester</string>
     <string name="title_activity_courses">Courses</string>
     <string name="title_activity_view_course"></string>
+    <string name="title_activity_add_course">AddCourse</string>
 </resources>
