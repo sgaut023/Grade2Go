@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:paddingLeft="20dp"
             android:paddingTop="20dp">
 
             <TextView
@@ -25,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="5dp"
+                android:paddingLeft="10dp"
                 android:text="TextView"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -47,7 +46,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.15"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -57,9 +58,8 @@
 
                     <TextView
                         android:id="@+id/recipe_view_text_cooktime"
-                        android:layout_width="match_parent"
+                        android:layout_width="189dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
                         android:text="Goal:"
@@ -93,9 +93,8 @@
 
                     <TextView
                         android:id="@+id/recipe_view_text_preptime"
-                        android:layout_width="match_parent"
+                        android:layout_width="186dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:paddingLeft="10dp"
                         android:text="Current grade:"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium"
@@ -131,32 +130,54 @@
                 android:padding="10dip"
                 android:layout_weight="1.99">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="Midterms" />
-
                 <ListView
                     android:id="@+id/ListViewQuiz"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dip"
-                    android:background="#B29090"></ListView>
 
-                <TextView
+                    android:background="#E0E0E0"></ListView>
+
+
+                <ListView
+                    android:id="@+id/ListViewLaboratory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dip"
-                    android:gravity="center_vertical"
-                    android:text="Finals" />
+                    android:background="#DCDCDC"></ListView>
+
+
+                <ListView
+                    android:id="@+id/ListViewMidterm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#E0E0E0"></ListView>
+
+
+                <ListView
+                    android:id="@+id/ListViewProject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#DCDCDC"></ListView>
+
+                <ListView
+                    android:id="@+id/ListViewOralPresentation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#DCDCDC"></ListView>
 
                 <ListView
                     android:id="@+id/ListViewFinal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dip"
-                    android:background="#4A9C67"></ListView>
+                    android:background="#DCDCDC"></ListView>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ListView
+                    android:id="@+id/ListViewOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#DCDCDC"></ListView>
             </LinearLayout>
 
         </LinearLayout>
@@ -167,3 +188,4 @@
 
 
 </android.support.v4.widget.NestedScrollView>
+
