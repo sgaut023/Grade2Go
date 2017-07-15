@@ -1,5 +1,6 @@
 package com.uottawa.gradetogo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -18,9 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Courses extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -31,14 +35,14 @@ public class Courses extends AppCompatActivity
     int semesterPosition ;
     private ActionBarDrawerToggle toggle;
     public DrawerLayout drawer ;
-
+    public int show =0 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        Button waste_btn = (Button) findViewById(R.id.toolbar_waste_button);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_courses);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +69,93 @@ public class Courses extends AppCompatActivity
 
         //populate the listview
         populateListView();
+        waste_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //SelectSemestertoRemove();
+                deletetime = 1;
+                Singleton.getSingleton().setUniversity(0);
 
+                Snackbar snackbar = Snackbar
+                        .make(v, "Select the courses to remove", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        final int postion = list.getPositionForView(view);
+                        System.out.println("postion selected is : "+postion);
+                        if(deletetime == 1) {
+                            Delete(postion);
+                            registerClickCallBack();
+                            if(show == 1) {
+                                Snackbar snackbar = Snackbar
+                                        .make(view, "The courses was successfully removed", Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
+                            deletetime = 0;
+                        }
+                        else{
+                            System.out.println("postion selected is : "+postion);
+                            registerClickCallBack();
+                        }
+
+                    }
+                });
+            }
+        });
+
+    }
+    public void SelectSemestertoRemove(){
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getApplicationContext(), "Select the semester to remove", duration);
+        new View.OnClickListener() {
+            public void onClick(View v) {
+                int postion = list.getPositionForView(v);
+                System.out.println("postion selected is : "+postion);
+                Delete(postion);
+            }
+        };
+    }
+
+    public void Delete(final int position) {
+        if (adapter.getCount() > 0) {
+
+            //Log.d("largest no is",""+largestitemno);
+            //deleting the latest added by subtracting one 1
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(Courses.this);
+            builder1.setMessage("Do you want to delete the selected semester ?");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Course Sem_remove = (Course) adapter.getItem(position);
+                            adapter.remove(Sem_remove);
+                            adapter.notifyDataSetChanged();
+                            dialog.cancel();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+            ;
+        } else {
+            int duration = Toast.LENGTH_SHORT;
+            //for showing nothing is left in the list
+            Toast toast = Toast.makeText(getApplicationContext(), "Db is empty", duration);
+
+
+            toast.show();
+        }
+        show = 1;
     }
 
 
