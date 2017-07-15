@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom|left"
+            android:text="Quiz:"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_add_evaluation"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/Midterm"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom|left"
+            android:text="Midterm:"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_add_evaluation2"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/Laboratories1"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom|left"
+            android:text="Project:"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_add_evaluation3"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/Laboratories3"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom|left"
+            android:text="Oral Presentation:"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_add_evaluation4"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/Fianal"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom|left"
+            android:text="Final Exam:"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_add_evaluation5"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/Laboratories"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom|left"
+            android:text="Laboratory:"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_add_evaluation6"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/Laboratories5"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:gravity="bottom|left"
+            android:text="Other:"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner_add_evaluation7"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+</LinearLayout>

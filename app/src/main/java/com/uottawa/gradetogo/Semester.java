@@ -33,6 +33,10 @@ public class Semester {
 
     }
 
+    public void deleteNumCourse( ){
+        numCourse--;
+    }
+
     public String getSeason() {
         return season;
     }

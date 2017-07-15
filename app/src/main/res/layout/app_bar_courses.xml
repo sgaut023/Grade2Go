@@ -38,16 +38,19 @@
                 <TextView
                     android:id="@+id/bar_Courses"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
+                    android:layout_weight="0.88"
+                    android:gravity="center_vertical"
                     android:paddingTop="3dp"
                     android:text="Courses"
-                    android:textSize="30sp" />
+                    android:textColor="@android:color/background_light"
+                    android:textColorHighlight="?android:attr/panelBackground"
+                    android:textSize="24sp" />
 
                 <Button
                     android:id="@+id/toolbar_waste_button"
-                    android:layout_width="30dp"
+                    android:layout_width="20dp"
                     android:layout_height="25dp"
                     android:layout_margin="@dimen/fab_margin"
                     android:background="@drawable/ic_waste" />

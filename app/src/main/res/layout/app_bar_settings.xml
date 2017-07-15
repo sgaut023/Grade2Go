@@ -21,6 +21,7 @@
             android:background="@color/colorPrimaryDark"
             android:paddingBottom="5dp"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <TextView
                 android:id="@+id/nav_id_semester"
                 android:layout_width="wrap_content"
@@ -28,7 +29,8 @@
                 android:layout_weight="1"
                 android:paddingTop="5dp"
                 android:text="Settings"
-                android:textSize="30sp" />
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 </android.support.design.widget.CoordinatorLayout>

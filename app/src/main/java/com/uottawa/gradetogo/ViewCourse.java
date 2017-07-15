@@ -29,12 +29,12 @@ public class ViewCourse extends AppCompatActivity {
     private int position;
     private int positionSemestre;
     private String name;
-    private ArrayAdapter<Double> adapter;
+    private ArrayAdapter<String> adapter;
     private ListView list;
     private static Context mContext;
     int deletetime = 0;
     Course currentCourse;
-    private ArrayList<Double> midterms;
+    private ArrayList<String> midterms;
 
 
 
@@ -70,20 +70,22 @@ public class ViewCourse extends AppCompatActivity {
         populateListView();
 
 
-
-
         // This is how to change TextView dynamically
         //populate the goal
         TextView goalText = (TextView)findViewById(R.id.txt_goal);
-        goalText.setText(currentCourse.getGoal() + "%");
+        if(currentCourse.getGoal().equals("N/A")){
+        goalText.setText(currentCourse.getGoal() );}
+        else{ goalText.setText(currentCourse.getGoal() +"");}
 
         //populate the grade
         TextView gradeText = (TextView)findViewById(R.id.txt_grade);
-        gradeText.setText(currentCourse.getGrade() + "%");
+        if(currentCourse.getGrade().equals("N/A")){
+        gradeText.setText(currentCourse.getGrade() );}
+        else{gradeText.setText(currentCourse.getGrade() + "%");}
 
         //populate the goalLetter
         TextView goalLetterText = (TextView)findViewById(R.id.txt_goal_letter);
-       goalLetterText.setText(currentCourse.getGoalLetter() + " ");
+       goalLetterText.setText(currentCourse.getGoalLetter() + "");
 
         //populate the gradeLetter
        TextView gradeLetterText = (TextView)findViewById(R.id.txt_grade_letter);
@@ -93,6 +95,7 @@ public class ViewCourse extends AppCompatActivity {
         name= currentCourse.getName();
         TextView courseName = (TextView)findViewById(R.id.txt_name_course);
         courseName.setText(name);
+
 
         //change the picture of each recipe
         ImageView img= (ImageView) findViewById(R.id.defaultRecipeImage);
@@ -159,42 +162,52 @@ public class ViewCourse extends AppCompatActivity {
         ListView list6 = (ListView) findViewById(R.id.ListViewOther);
         list6.setAdapter(adapter);
 
+        Utils.setListViewHeightBasedOnChildren(list);
+        Utils.setListViewHeightBasedOnChildren(list1);
+        Utils.setListViewHeightBasedOnChildren(list2);
+        Utils.setListViewHeightBasedOnChildren(list3);
+        Utils.setListViewHeightBasedOnChildren(list4);
+        Utils.setListViewHeightBasedOnChildren(list5);
+        Utils.setListViewHeightBasedOnChildren(list6);
+
+
+
 
        //mettre espace entre les listview
         if(currentCourse.getQuizzes().size()!=0){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list
                     .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 10);}
+            layoutParams.setMargins(0, 0, 0, 20);}
 
         if(currentCourse.getFinals().size()!=0){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list1
                     .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 10);}
+            layoutParams.setMargins(0, 0, 0, 20);}
 
         if(currentCourse.getMidterms().size()!=0){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list2
                     .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 10);}
+            layoutParams.setMargins(0, 0, 0, 20);}
 
         if(currentCourse.getProjects().size()!=0){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list3
                     .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 10);}
+            layoutParams.setMargins(0, 0, 0, 20);}
 
         if(currentCourse.getOralPresentations().size()!=0){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list4
                     .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 10);}
+            layoutParams.setMargins(0, 0, 0, 20);}
 
         if(currentCourse.getLaboratories().size()!=0){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list5
                     .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 10);}
+            layoutParams.setMargins(0, 0, 0, 20);}
 
         if(currentCourse.getOthers().size()!=0){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list6
                     .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 10);}
+            layoutParams.setMargins(0, 0, 0, 20);}
 
 
 
@@ -202,7 +215,7 @@ public class ViewCourse extends AppCompatActivity {
 
 
 
-    private class MyListAdapter extends ArrayAdapter<Double> {
+    private class MyListAdapter extends ArrayAdapter<String> {
 
         public MyListAdapter() {
             super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getQuizzes());
@@ -219,23 +232,32 @@ public class ViewCourse extends AppCompatActivity {
 
             // Make name Text
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
-            nameText.setText("Quiz "+ (position+1) +" :");
+            nameText.setText("Quiz " + (position + 1) + " :");
 
-            double currentGrade = currentCourse.getQuizzes().get(position);
-            int currentLetterGrade = (int) currentGrade;
+            String currentGrade = currentCourse.getQuizzes().get(position);
+
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
-            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+            if (currentGrade.equals("N/A")) {
+                gradeLetterText.setText("N/A");
+
+            } else {
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+            }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getQuizzes().get(position)+"%");
+            if (currentGrade.equals("N/A")) {
+                gradeText.setText("N/A");
+            } else {
+                gradeText.setText(currentGrade + "%");
+            }
+
+
             return itemView;
-
-
         }
 
     }
 
-    private class MyListAdapter1 extends ArrayAdapter<Double> {
+    private class MyListAdapter1 extends ArrayAdapter<String> {
 
         public MyListAdapter1() {
             super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getFinals());
@@ -254,13 +276,21 @@ public class ViewCourse extends AppCompatActivity {
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
             nameText.setText("Final "+ (position+1) +" :");
 
-            double currentGrade = currentCourse.getFinals().get(position);
-            int currentLetterGrade = (int) currentGrade;
+            String currentGrade = currentCourse.getFinals().get(position);
+
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
-            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+            if(currentGrade.equals("N/A")){
+                gradeLetterText.setText("N/A");
+
+            }else {
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+            }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getFinals().get(position)+"%");
+            if(currentGrade.equals("N/A")){
+                gradeText.setText("N/A");}
+            else{
+                gradeText.setText(currentGrade + "%");}
             return itemView;
 
 
@@ -268,7 +298,7 @@ public class ViewCourse extends AppCompatActivity {
 
     }
 
-    private class MyListAdapter2 extends ArrayAdapter<Double> {
+    private class MyListAdapter2 extends ArrayAdapter<String> {
 
         public MyListAdapter2() {
             super(ViewCourse.this, R.layout.list_evaluation, midterms);
@@ -287,21 +317,29 @@ public class ViewCourse extends AppCompatActivity {
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
             nameText.setText("Midterm "+ (position+1) +" :");
 
-            double currentGrade = currentCourse.getMidterms().get(position);
-            int currentLetterGrade = (int) currentGrade;
+            String currentGrade = currentCourse.getMidterms().get(position);
+
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
-            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+            if(currentGrade.equals("N/A")){
+                gradeLetterText.setText("N/A");
+
+            }else {
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+            }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getMidterms().get(position)+"%");
+            if(currentGrade.equals("N/A")){
+                gradeText.setText("N/A");}
+            else{
+                gradeText.setText(currentGrade + "%");}
             return itemView;
-
 
         }
 
+
     }
 
-    private class MyListAdapter3 extends ArrayAdapter<Double> {
+    private class MyListAdapter3 extends ArrayAdapter<String> {
 
         public MyListAdapter3() {
             super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getProjects());
@@ -320,13 +358,21 @@ public class ViewCourse extends AppCompatActivity {
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
             nameText.setText("Project "+ (position+1) +" :");
 
-            double currentGrade = currentCourse.getProjects().get(position);
-            int currentLetterGrade = (int) currentGrade;
+            String currentGrade = currentCourse.getProjects().get(position);
+
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
-            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+            if(currentGrade.equals("N/A")){
+                gradeLetterText.setText("N/A");
+
+            }else {
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+            }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getProjects().get(position)+"%");
+            if(currentGrade.equals("N/A")){
+                gradeText.setText("N/A");}
+            else{
+                gradeText.setText(currentGrade + "%");}
             return itemView;
 
 
@@ -334,7 +380,7 @@ public class ViewCourse extends AppCompatActivity {
 
     }
 
-    private class MyListAdapter4 extends ArrayAdapter<Double> {
+    private class MyListAdapter4 extends ArrayAdapter<String> {
 
         public MyListAdapter4() {
             super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getOralPresentations());
@@ -353,21 +399,28 @@ public class ViewCourse extends AppCompatActivity {
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
             nameText.setText("Oral Presentation "+ (position+1) +" :");
 
-            double currentGrade = currentCourse.getOralPresentations().get(position);
-            int currentLetterGrade = (int) currentGrade;
+            String currentGrade = currentCourse.getOralPresentations().get(position);
+
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
-            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+            if(currentGrade.equals("N/A")){
+                gradeLetterText.setText("N/A");
+
+            }else {
+                gradeLetterText.setText(Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+            }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getQuizzes().get(position)+"%");
+            if(currentGrade.equals("N/A")){
+                gradeText.setText("N/A");}
+            else{
+                gradeText.setText(currentGrade + "%");}
             return itemView;
-
 
         }
 
     }
 
-    private class MyListAdapter5 extends ArrayAdapter<Double> {
+    private class MyListAdapter5 extends ArrayAdapter<String> {
 
         public MyListAdapter5() {
             super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getLaboratories());
@@ -386,13 +439,21 @@ public class ViewCourse extends AppCompatActivity {
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
             nameText.setText("Laboratory "+ (position+1) +" :");
 
-            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getLaboratories().get(position)+"%");
+            String currentGrade = currentCourse.getLaboratories().get(position);
 
-            double currentGrade = currentCourse.getLaboratories().get(position);
-            int currentLetterGrade = (int) currentGrade;
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
-            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade)+"%");
+            if(currentGrade.equals("N/A")){
+                gradeLetterText.setText("N/A");
+
+            }else {
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+            }
+
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            if(currentGrade.equals("N/A")){
+                gradeText.setText("N/A");}
+            else{
+                gradeText.setText(currentGrade + "%");}
 
             return itemView;
 
@@ -403,7 +464,7 @@ public class ViewCourse extends AppCompatActivity {
 
     }
 
-    private class MyListAdapter6 extends ArrayAdapter<Double> {
+    private class MyListAdapter6 extends ArrayAdapter<String> {
 
         public MyListAdapter6() {
             super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getOthers());
@@ -422,13 +483,22 @@ public class ViewCourse extends AppCompatActivity {
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
             nameText.setText("Other "+ (position+1) +" :");
 
-            double currentGrade = currentCourse.getOthers().get(position);
-            int currentLetterGrade = (int) currentGrade;
+            String currentGrade = currentCourse.getOthers().get(position);
+
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
-            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+            if(currentGrade.equals("N/A")){
+                gradeLetterText.setText("N/A");
+
+            }else {
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+            }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getOthers().get(position)+"%");
+            if(currentGrade.equals("N/A")){
+                gradeText.setText("N/A");}
+            else{
+                gradeText.setText(currentGrade + "%");}
+
             return itemView;
 
 
@@ -460,6 +530,7 @@ public class ViewCourse extends AppCompatActivity {
         listView.setLayoutParams(layoutParams);
         listView.requestLayout();
     }
+
     }
 
 

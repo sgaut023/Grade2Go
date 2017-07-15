@@ -10,7 +10,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
 
         <LinearLayout
@@ -26,6 +28,7 @@
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:text="TextView"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -36,9 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:baselineAligned="false"
+            android:orientation="vertical"
             android:paddingBottom="20dp"
             android:paddingTop="40dp"
-            android:orientation="vertical"
             android:weightSum="1">
 
 
@@ -48,7 +51,7 @@
                 android:layout_weight="0.15"
                 android:orientation="vertical"
                 android:paddingBottom="5dp"
-                android:paddingTop="5dp">
+                android:paddingTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -75,9 +78,8 @@
 
                     <TextView
                         android:id="@+id/txt_goal"
-                        android:layout_width="match_parent"
+                        android:layout_width="103dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="bottom|right"
                         android:paddingRight="30dp"
                         android:text="98%"
@@ -112,9 +114,8 @@
 
                     <TextView
                         android:id="@+id/txt_grade"
-                        android:layout_width="match_parent"
+                        android:layout_width="99dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="bottom|right"
                         android:paddingRight="30dp"
                         android:text="78%"
@@ -125,10 +126,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="318dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.99"
                 android:orientation="vertical"
-                android:padding="10dip"
-                android:layout_weight="1.99">
+                android:padding="10dip">
 
                 <ListView
                     android:id="@+id/ListViewQuiz"
@@ -157,7 +158,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#DCDCDC"></ListView>
-
                 <ListView
                     android:id="@+id/ListViewOralPresentation"
                     android:layout_width="match_parent"
@@ -169,9 +169,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#DCDCDC"></ListView>
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp" />
 
                 <ListView
                     android:id="@+id/ListViewOther"

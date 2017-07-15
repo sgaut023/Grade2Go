@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/txt_evaluation"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.57"
         android:paddingLeft="5dp"

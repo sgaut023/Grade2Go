@@ -26,17 +26,20 @@
             <TextView
                 android:id="@+id/nav_id_semester"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
+                android:layout_weight="0.86"
+                android:gravity="center_vertical"
                 android:paddingTop="5dp"
                 android:text="Semesters"
-                android:textSize="30sp" />
+                android:textColor="@android:color/background_light"
+                android:textColorHighlight="@android:color/background_light"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/toolbar_overflow_menu_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
                 android:layout_margin="@dimen/fab_margin"
                 android:background="@drawable/ic_waste" />
         </LinearLayout>

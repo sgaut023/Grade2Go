@@ -52,6 +52,7 @@ public class Courses extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Courses.this, AddCourse.class);
+                i.putExtra("semestrePosition", semesterPosition+"");
                 startActivity(i);
             }
         });
@@ -133,6 +134,7 @@ public class Courses extends AppCompatActivity
                     "Yes",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            Singleton.getSingleton().getSemesters().get(semesterPosition).deleteNumCourse();
                             Course Sem_remove = (Course) adapter.getItem(position);
                             adapter.remove(Sem_remove);
                             adapter.notifyDataSetChanged();
@@ -286,19 +288,19 @@ public class Courses extends AppCompatActivity
 
             // Make grade Text
             TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_grade);
-            gradeLetterText.setText(Singleton.getSingleton().getGrade((int)course.getGrade())+"");
+            gradeLetterText.setText(course.getGradeLetter());
 
             // Make grade Text
             TextView gradeText = (TextView) itemView.findViewById(R.id. txt_list_grade);
-            gradeText.setText(course.getGradeLetter()+"");
+            gradeText.setText(course.getGrade()+"");
 
             // Make grade Text
             TextView goalText = (TextView) itemView.findViewById(R.id.txt_goal);
-            goalText.setText(Singleton.getSingleton().getGrade((int)course.getGoal())+"");
+            goalText.setText(course.getGoal());
 
             // Make grade Text
             TextView goalLetterText = (TextView) itemView.findViewById(R.id. txt_list_grade_goal);
-            goalLetterText.setText(course.getGoal()+"");
+            goalLetterText.setText(course.getGoalLetter());
 
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.item_icon);

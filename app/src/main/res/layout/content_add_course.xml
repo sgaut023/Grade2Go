@@ -23,13 +23,12 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewAddCourse"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_weight="1"
                 android:background="#80000000"
                 android:contentDescription="Hello"
-                android:onClick="onClickOpenGallery"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_default" />
 
@@ -42,12 +41,12 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/recipe_add_name"
+                android:id="@+id/course_add_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Enter your course name"
-                android:backgroundTint="@android:color/holo_blue_dark"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:inputType="text"
                 android:selectAllOnFocus="false"
                 android:textSize="18sp" />
@@ -58,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp"
                 android:paddingTop="10dp"
-                android:text="Enter your goal:"
+                android:text="Enter your goal for this course:"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -78,20 +78,19 @@
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/recipe_add_preptime"
-                    android:layout_width="150dp"
+                    android:id="@+id/course_add_goal"
+                    android:layout_width="64dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:ems="10"
                     android:gravity="right"
-                    android:inputType="number"
-                    android:backgroundTint="@android:color/holo_blue_dark"
+                    android:inputType="numberDecimal"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:selectAllOnFocus="false"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="25dp"
+                    android:layout_width="15dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="%"
@@ -104,11 +103,11 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="40dp">
+                android:paddingBottom="15dp">
 
 
                 <Button
-                    android:id="@+id/btn_save_semester"
+                    android:id="@+id/btn_add_evaluation"
                     android:layout_width="200dp"
                     android:layout_height="33dp"
                     android:background="@color/colorPrimaryDark"
@@ -120,10 +119,50 @@
 
 
             <LinearLayout
-                android:layout_width="205dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_evaluations_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp">
+
+                <ListView
+                    android:id="@+id/ListViewAddCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal|center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="30dp">
+
+                <Button
+                    android:id="@+id/btn_save_semester"
+                    android:layout_width="200dp"
+                    android:layout_height="33dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:elevation="6dp"
+                    android:text="Save Course"
+                    android:textColor="@android:color/background_light" />
 
             </LinearLayout>
 

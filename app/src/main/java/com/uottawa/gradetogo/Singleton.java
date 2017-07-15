@@ -18,6 +18,9 @@ public class Singleton {
     private Uri defaultImageA = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default");
     private Uri defaultImageB = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default2");
     private Uri defaultImageC = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default3");
+    private Uri defaultImageD = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default4");
+    private Uri defaultImageE = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default5");
+    private Uri defaultImageF = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default6");
 
 
     private Singleton() {
@@ -27,9 +30,10 @@ public class Singleton {
         semesters.add(new Semester("Winter", "2017"));
 
 
-        semesters.get(0).addCourse(new Course("CSI 3581", 90, defaultImageA ));
-        semesters.get(0).addCourse(new Course("SEG 3685", 100, defaultImageB));
-        semesters.get(0).addCourse(new Course("SEG 3585", 70, defaultImageC));
+        semesters.get(0).addCourse(new Course("CSI 3581", "90", defaultImageA ));
+        semesters.get(0).addCourse(new Course("SEG 3685", "100", defaultImageB));
+        semesters.get(0).addCourse(new Course("SEG 3585", "70", defaultImageC));
+        semesters.get(0).addCourse(new Course("SEG 3585", "70", defaultImageD));
         University  = 0;
 
     }
@@ -105,6 +109,23 @@ public class Singleton {
             }
         }
         return true;
+    }
+
+    //fonction qui retourne une image pour un cours
+   public Uri getPhoto(int position){
+
+        if(position %5 == 0){
+            return defaultImageF;
+        } else if (position %4 == 0){
+            return defaultImageE;
+        }else if( position%3 == 0){
+            return defaultImageD;
+        }else if (position % 2 == 0){
+            return defaultImageC;
+        }else if (position %1 == 0){
+            return defaultImageB;
+        }else return defaultImageA;
+
     }
 
 }
