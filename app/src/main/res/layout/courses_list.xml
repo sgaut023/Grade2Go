@@ -72,11 +72,21 @@
 
             <TextView
                 android:id="@+id/txt_grade"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5.14"
+                android:gravity="left"
                 android:text="A+"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txt_list_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingRight="16dp"
+                android:text="TextView" />
 
         </LinearLayout>
 
@@ -98,10 +108,20 @@
 
             <TextView
                 android:id="@+id/txt_goal"
-                android:layout_width="91dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
+                android:gravity="left"
                 android:text="A"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txt_list_grade_goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingRight="16dp"
+                android:text="TextView" />
         </LinearLayout>
 
 

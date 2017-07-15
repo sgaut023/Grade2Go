@@ -13,13 +13,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.view.View.MeasureSpec;
 
 import java.util.ArrayList;
 
@@ -75,18 +75,18 @@ public class ViewCourse extends AppCompatActivity {
         // This is how to change TextView dynamically
         //populate the goal
         TextView goalText = (TextView)findViewById(R.id.txt_goal);
-        goalText.setText(currentCourse.getGoal() + " ");
+        goalText.setText(currentCourse.getGoal() + "%");
 
         //populate the grade
         TextView gradeText = (TextView)findViewById(R.id.txt_grade);
-        gradeText.setText(currentCourse.getGrade() + " ");
+        gradeText.setText(currentCourse.getGrade() + "%");
 
         //populate the goalLetter
         TextView goalLetterText = (TextView)findViewById(R.id.txt_goal_letter);
-        goalLetterText.setText(currentCourse.getGoalLetter() + " ");
+       goalLetterText.setText(currentCourse.getGoalLetter() + " ");
 
         //populate the gradeLetter
-        TextView gradeLetterText = (TextView)findViewById(R.id.txt_grade_letter);
+       TextView gradeLetterText = (TextView)findViewById(R.id.txt_grade_letter);
         gradeLetterText.setText(currentCourse.getGradeLetter() + "");
 
         //change the name of each recipe
@@ -135,12 +135,68 @@ public class ViewCourse extends AppCompatActivity {
         list.setAdapter(adapter);
 
         adapter = new MyListAdapter1();
-        list = (ListView) findViewById(R.id.ListViewFinal);
-        list.setAdapter(adapter);
+        ListView list1 = (ListView) findViewById(R.id.ListViewFinal);
+        list1.setAdapter(adapter);
 
-       // adapter = new MyListAdapter2();
-       // list = (ListView) findViewById(R.id.ListViewMidterm);
-       // list.setAdapter(adapter);
+       adapter = new MyListAdapter2();
+        ListView  list2 = (ListView) findViewById(R.id.ListViewMidterm);
+       list2.setAdapter(adapter);
+
+        adapter = new MyListAdapter3();
+        ListView list3 = (ListView) findViewById(R.id.ListViewProject);
+        list3.setAdapter(adapter);
+
+        adapter = new MyListAdapter4();
+        ListView list4 = (ListView) findViewById(R.id.ListViewOralPresentation);
+        list4.setAdapter(adapter);
+
+        adapter = new MyListAdapter5();
+        ListView list5 = (ListView) findViewById(R.id.ListViewLaboratory);
+        list5.setAdapter(adapter);
+
+
+        adapter = new MyListAdapter6();
+        ListView list6 = (ListView) findViewById(R.id.ListViewOther);
+        list6.setAdapter(adapter);
+
+
+       //mettre espace entre les listview
+        if(currentCourse.getQuizzes().size()!=0){
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 10);}
+
+        if(currentCourse.getFinals().size()!=0){
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list1
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 10);}
+
+        if(currentCourse.getMidterms().size()!=0){
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list2
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 10);}
+
+        if(currentCourse.getProjects().size()!=0){
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list3
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 10);}
+
+        if(currentCourse.getOralPresentations().size()!=0){
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list4
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 10);}
+
+        if(currentCourse.getLaboratories().size()!=0){
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list5
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 10);}
+
+        if(currentCourse.getOthers().size()!=0){
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) list6
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 10);}
+
+
 
     }
 
@@ -149,7 +205,7 @@ public class ViewCourse extends AppCompatActivity {
     private class MyListAdapter extends ArrayAdapter<Double> {
 
         public MyListAdapter() {
-            super(ViewCourse.this, R.layout.list_evaluation, (ArrayList<Double>)midterms);
+            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getQuizzes());
         }
 
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -163,10 +219,15 @@ public class ViewCourse extends AppCompatActivity {
 
             // Make name Text
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
-            nameText.setText("Midterm "+ (position+1) +":");
+            nameText.setText("Quiz "+ (position+1) +" :");
+
+            double currentGrade = currentCourse.getQuizzes().get(position);
+            int currentLetterGrade = (int) currentGrade;
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
+            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
-            gradeText.setText(""+ currentCourse.getMidterms().get(position)+"%");
+            gradeText.setText(""+ currentCourse.getQuizzes().get(position)+"%");
             return itemView;
 
 
@@ -191,7 +252,12 @@ public class ViewCourse extends AppCompatActivity {
 
             // Make name Text
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
-            nameText.setText("Final "+ (position+1) +":");
+            nameText.setText("Final "+ (position+1) +" :");
+
+            double currentGrade = currentCourse.getFinals().get(position);
+            int currentLetterGrade = (int) currentGrade;
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
+            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
             gradeText.setText(""+ currentCourse.getFinals().get(position)+"%");
@@ -205,7 +271,7 @@ public class ViewCourse extends AppCompatActivity {
     private class MyListAdapter2 extends ArrayAdapter<Double> {
 
         public MyListAdapter2() {
-            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getQuizzes());
+            super(ViewCourse.this, R.layout.list_evaluation, midterms);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -219,10 +285,150 @@ public class ViewCourse extends AppCompatActivity {
 
             // Make name Text
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
-            nameText.setText("Quiz "+ (position+1) +":");
+            nameText.setText("Midterm "+ (position+1) +" :");
+
+            double currentGrade = currentCourse.getMidterms().get(position);
+            int currentLetterGrade = (int) currentGrade;
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
+            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            gradeText.setText(""+ currentCourse.getMidterms().get(position)+"%");
+            return itemView;
+
+
+        }
+
+    }
+
+    private class MyListAdapter3 extends ArrayAdapter<Double> {
+
+        public MyListAdapter3() {
+            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getProjects());
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public @NonNull
+        View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.list_evaluation, parent, false);
+            }
+
+            // Make name Text
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            nameText.setText("Project "+ (position+1) +" :");
+
+            double currentGrade = currentCourse.getProjects().get(position);
+            int currentLetterGrade = (int) currentGrade;
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
+            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            gradeText.setText(""+ currentCourse.getProjects().get(position)+"%");
+            return itemView;
+
+
+        }
+
+    }
+
+    private class MyListAdapter4 extends ArrayAdapter<Double> {
+
+        public MyListAdapter4() {
+            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getOralPresentations());
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public @NonNull
+        View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.list_evaluation, parent, false);
+            }
+
+            // Make name Text
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            nameText.setText("Oral Presentation "+ (position+1) +" :");
+
+            double currentGrade = currentCourse.getOralPresentations().get(position);
+            int currentLetterGrade = (int) currentGrade;
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
+            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
             gradeText.setText(""+ currentCourse.getQuizzes().get(position)+"%");
+            return itemView;
+
+
+        }
+
+    }
+
+    private class MyListAdapter5 extends ArrayAdapter<Double> {
+
+        public MyListAdapter5() {
+            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getLaboratories());
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public @NonNull
+        View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.list_evaluation, parent, false);
+            }
+
+            // Make name Text
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            nameText.setText("Laboratory "+ (position+1) +" :");
+
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            gradeText.setText(""+ currentCourse.getLaboratories().get(position)+"%");
+
+            double currentGrade = currentCourse.getLaboratories().get(position);
+            int currentLetterGrade = (int) currentGrade;
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
+            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade)+"%");
+
+            return itemView;
+
+
+
+
+        }
+
+    }
+
+    private class MyListAdapter6 extends ArrayAdapter<Double> {
+
+        public MyListAdapter6() {
+            super(ViewCourse.this, R.layout.list_evaluation, currentCourse.getOthers());
+        }
+
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+        @Override
+        public @NonNull
+        View getView(int position, View convertView, @NonNull ViewGroup parent) {
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.list_evaluation, parent, false);
+            }
+
+            // Make name Text
+            TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
+            nameText.setText("Other "+ (position+1) +" :");
+
+            double currentGrade = currentCourse.getOthers().get(position);
+            int currentLetterGrade = (int) currentGrade;
+            TextView gradeLetterText = (TextView) itemView.findViewById(R.id.txt_evaluation_letter);
+            gradeLetterText.setText(""+ Singleton.getSingleton().getGrade(currentLetterGrade));
+
+            TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
+            gradeText.setText(""+ currentCourse.getOthers().get(position)+"%");
             return itemView;
 
 
