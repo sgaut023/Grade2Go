@@ -296,11 +296,11 @@ public class Courses extends AppCompatActivity
 
             // Make grade Text
             TextView goalText = (TextView) itemView.findViewById(R.id.txt_goal);
-            goalText.setText(course.getGoal());
+            goalText.setText(course.getGoalLetter());
 
             // Make grade Text
             TextView goalLetterText = (TextView) itemView.findViewById(R.id. txt_list_grade_goal);
-            goalLetterText.setText(course.getGoalLetter());
+            goalLetterText.setText(course.getGoal());
 
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.item_icon);

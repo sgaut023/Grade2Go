@@ -54,7 +54,7 @@ public class Singleton {
         return University;
     }
 
-    public String getGrade(int perc){
+    public String getGrade(double perc){
         int uni = getUniversity();
         switch (uni) {
             case 0 :

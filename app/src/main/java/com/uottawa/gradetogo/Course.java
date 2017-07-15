@@ -119,9 +119,10 @@ public class Course {
     }
 
     public String getGoalLetter() {
-        if (grade.equals("N/A")) {
+        if (goal.equals("N/A")) {
             return "N/A";}
-        return Singleton.getSingleton().getGrade(Integer.parseInt(goal));
+        else{
+        return Singleton.getSingleton().getGrade( Double.parseDouble(goal));}
     }
 
     public Uri getIconId() {
@@ -136,7 +137,7 @@ public class Course {
 
         if (grade.equals("N/A")) {
             return "N/A";
-        }else return Singleton.getSingleton().getGrade(Integer.parseInt(grade));
+        }else return Singleton.getSingleton().getGrade(Double.parseDouble(grade));
     }
 
     public String getGoal() {
