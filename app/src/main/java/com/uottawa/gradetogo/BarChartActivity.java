@@ -82,7 +82,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         Semester currentSemestre = Singleton.getSingleton().getSemesters().get(positionSemestre);
         currentCourse = currentSemestre.getCourse().get(positionCours);
 
-        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(mChart);
+        IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(mChart,positionSemestre,positionCours);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxisPosition.BOTTOM);

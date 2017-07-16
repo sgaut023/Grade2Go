@@ -3,6 +3,7 @@ package custom;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.uottawa.gradetogo.Singleton;
 
 /**
  * Created by philipp on 02/06/16.
@@ -15,58 +16,20 @@ public class DayAxisValueFormatter implements IAxisValueFormatter
     };
 
     private BarLineChartBase<?> chart;
-
-    public DayAxisValueFormatter(BarLineChartBase<?> chart) {
+    public  int spos;
+    public  int cpos;
+    public DayAxisValueFormatter(BarLineChartBase<?> chart, int semespos,int cpos) {
         this.chart = chart;
+        this.spos = semespos;
+        this.cpos = cpos;
     }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-
-        int days = (int) value;
-
-        int year = determineYear(days);
-
-        int month = determineMonth(days);
-        String monthName = mMonths[month % mMonths.length];
-        String yearName = String.valueOf(year);
-
-        if (chart.getVisibleXRange() > 30 * 6) {
-
-            return monthName + " " + yearName;
-        } else {
-
-            int dayOfMonth = determineDayOfMonth(days, month + 12 * (year - 2016));
-
-            String appendix = "th";
-
-            switch (dayOfMonth) {
-                case 1:
-                    appendix = "st";
-                    break;
-                case 2:
-                    appendix = "nd";
-                    break;
-                case 3:
-                    appendix = "rd";
-                    break;
-                case 21:
-                    appendix = "st";
-                    break;
-                case 22:
-                    appendix = "nd";
-                    break;
-                case 23:
-                    appendix = "rd";
-                    break;
-                case 31:
-                    appendix = "st";
-                    break;
-            }
-
-            return dayOfMonth == 0 ? "" : dayOfMonth + appendix + " " + monthName;
+        int index = (int) value;
+        return Singleton.getSingleton().getSemesters().get(spos).getCourse().get(cpos).getEvaluationsName().get(index);
         }
-    }
+
 
     private int getDaysForMonth(int month, int year) {
 
