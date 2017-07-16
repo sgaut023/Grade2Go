@@ -192,7 +192,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
-            set1 = new BarDataSet(yVals1, "The year 2017");
+            set1 = new BarDataSet(yVals1, "Midterms, Quiz, Finals, ...");
 
             set1.setDrawIcons(false);
 
