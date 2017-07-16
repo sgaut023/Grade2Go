@@ -140,6 +140,17 @@ public class Course {
             return "N/A";
         }else return Singleton.getSingleton().getGrade(Double.parseDouble(grade));
     }
+    public boolean isGradesEmpty(){
+        ArrayList<String> grades = getGrades();
+        int i = 0 ;
+        while (i<grades.size()){
+            if(!grades.get(i).equals("N/A")){
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
 
     public String getGoal() {
         return goal;

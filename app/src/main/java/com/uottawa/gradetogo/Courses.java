@@ -35,6 +35,7 @@ public class Courses extends AppCompatActivity
     private ListView list;
     int deletetime = 0;
     int semesterPosition ;
+    public TextView SemesName;
     private ActionBarDrawerToggle toggle;
     public DrawerLayout drawer ;
     public int show =0 ;
@@ -69,7 +70,9 @@ public class Courses extends AppCompatActivity
         // pass the semester info
         Intent intent = getIntent();
         semesterPosition = Integer.parseInt(intent.getStringExtra("Position"));
-
+        SemesName = (TextView) findViewById(R.id.bar_Courses);
+        SemesName.setText(Singleton.getSingleton().getSemesters().get(semesterPosition).getSeason().toString()+" "+
+                Singleton.getSingleton().getSemesters().get(semesterPosition).getYear().toString());
         registerClickCallBack();
 
         //populate the listview
@@ -79,7 +82,7 @@ public class Courses extends AppCompatActivity
                 //SelectSemestertoRemove();
                 deletetime = 1;
                 Singleton.getSingleton().setUniversity(0);
-
+                if(Singleton.getSingleton().getSemesters().get(semesterPosition).getNumCourse() != 0){
                 Snackbar snackbar = Snackbar
                         .make(v, "Select the courses to remove", Snackbar.LENGTH_LONG);
                 snackbar.show();
@@ -104,7 +107,11 @@ public class Courses extends AppCompatActivity
                         }
 
                     }
-                });
+                });}else{
+                    Snackbar snackbar = Snackbar
+                            .make(v, "there is no courses to delete please add course", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
             }
         });
 
@@ -127,15 +134,16 @@ public class Courses extends AppCompatActivity
             //Log.d("largest no is",""+largestitemno);
             //deleting the latest added by subtracting one 1
             AlertDialog.Builder builder1 = new AlertDialog.Builder(Courses.this);
-            builder1.setMessage("Do you want to delete the selected semester ?");
             builder1.setCancelable(true);
+            final String crsname ;
 
+            Singleton.getSingleton().getSemesters().get(semesterPosition).deleteNumCourse();
+            final Course Sem_remove = (Course) adapter.getItem(position);
+            crsname = Sem_remove.getName();
             builder1.setPositiveButton(
                     "Yes",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Singleton.getSingleton().getSemesters().get(semesterPosition).deleteNumCourse();
-                            Course Sem_remove = (Course) adapter.getItem(position);
                             adapter.remove(Sem_remove);
                             adapter.notifyDataSetChanged();
                             dialog.cancel();
@@ -149,7 +157,7 @@ public class Courses extends AppCompatActivity
                             dialog.cancel();
                         }
                     });
-
+            builder1.setMessage("Do you want to delete the course "+crsname.toString()+" ?");
             AlertDialog alert11 = builder1.create();
             alert11.show();
             ;
