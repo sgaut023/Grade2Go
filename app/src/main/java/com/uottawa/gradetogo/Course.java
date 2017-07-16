@@ -131,7 +131,7 @@ public class Course {
     }
 
     public String getName() {
-        return name;
+        return name.toUpperCase();
     }
 
     public String getGradeLetter() {
@@ -144,4 +144,67 @@ public class Course {
     public String getGoal() {
         return goal;
     }
+
+    public ArrayList<String> getGrades(){
+        ArrayList<String> newList = new ArrayList<String>();
+        newList.addAll(quizzes);
+        newList.addAll(midterms);
+        newList.addAll(projects);
+        newList.addAll(oralPresentations);
+        newList.addAll(finals);
+        newList.addAll(laboratories);
+        newList.addAll(others);
+        return newList;
+    }
+
+    public ArrayList<Double> getPonderations(){
+        ArrayList<Double> newList = new ArrayList<Double>();
+        newList.addAll(quizzesPonderation);
+        newList.addAll(midtermsPonderation);
+        newList.addAll(projectsPonderation);
+        newList.addAll(oralPresentationsPonderation);
+        newList.addAll(finalsPonderation);
+        newList.addAll(laboratoriesPonderation);
+        newList.addAll(othersPonderation);
+        return newList;
+
+    }
+
+    public ArrayList<String> getEvaluationsName(){
+        ArrayList<String> newList = new ArrayList<String>();
+        for(int i=0; i<quizzes.size(); i++){
+            newList.add("Quiz " +(i+1));
+        }
+        for(int i=0; i<midterms.size(); i++){
+            newList.add("Midterm " +(i+1));
+        }
+        for(int i=0; i<projects.size(); i++){
+            newList.add("Project " +(i+1));
+        }
+        for(int i=0; i<oralPresentations.size(); i++){
+            newList.add("Oral " +(i+1));
+        }
+        for(int i=0; i<finals.size(); i++){
+            newList.add("Final " +(i+1));
+        }
+        for(int i=0; i<laboratories.size(); i++){
+            newList.add("Laboratory " +(i+1));
+        }
+        for(int i=0; i<others.size(); i++){
+            newList.add("Other " +(i+1));
+        }
+
+        return newList;
+
+    }
+
+    public int getNumQuiz(){return quizzes.size();}
+    public int getNumMidterm(){return midterms.size();}
+    public int getNumProject(){return projects.size();}
+    public int getNumOral(){return oralPresentations.size();}
+    public int getNumFinal(){return finals.size();}
+    public int getNumOther(){return others.size();}
+    public int getNumLaboratory(){return laboratories.size();}
+
+
 }

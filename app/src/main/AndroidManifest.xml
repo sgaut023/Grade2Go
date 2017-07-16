@@ -63,6 +63,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.uottawa.gradetogo.Courses" />
         </activity>
+        <activity android:name=".EditACourse"></activity>
+        <activity android:name=".BarChartActivity"></activity>
     </application>
 
 </manifest>

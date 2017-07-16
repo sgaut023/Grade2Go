@@ -29,11 +29,6 @@ public class Singleton {
         semesters.add(new Semester("SUMMER", "2017"));
         semesters.add(new Semester("Winter", "2017"));
 
-
-        semesters.get(0).addCourse(new Course("CSI 3581", "90", defaultImageA ));
-        semesters.get(0).addCourse(new Course("SEG 3685", "100", defaultImageB));
-        semesters.get(0).addCourse(new Course("SEG 3585", "70", defaultImageC));
-        semesters.get(0).addCourse(new Course("SEG 3585", "70", defaultImageD));
         University  = 0;
 
     }
