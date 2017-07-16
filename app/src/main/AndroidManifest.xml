@@ -48,11 +48,11 @@
         <activity
             android:name=".ViewCourse"
             android:label="@string/title_activity_view_course"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Courses"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.uottawa.gradetogo.MainActivity" />
+                android:value="com.uottawa.gradetogo.Courses" />
         </activity>
         <activity
             android:name=".AddCourse"
@@ -67,7 +67,7 @@
         <activity android:name=".BarChartActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.uottawa.gradetogo.ViewCourse" />
+                android:value="com.uottawa.gradetogo.MainActivity" />
         </activity>
     </application>
 

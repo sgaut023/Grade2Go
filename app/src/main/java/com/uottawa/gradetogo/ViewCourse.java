@@ -232,7 +232,14 @@ public class ViewCourse extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent i = new Intent(ViewCourse.this, Courses.class);
+        i.putExtra("semesterPosition", positionSemestre+"");
+        startActivity(i);
+        finish();
+    }
 
     private class MyListAdapter extends ArrayAdapter<String> {
 
