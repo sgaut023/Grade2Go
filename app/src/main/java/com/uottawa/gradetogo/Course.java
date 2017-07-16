@@ -47,6 +47,7 @@ public class Course {
         oralPresentations = new ArrayList<String>();
         others = new ArrayList<String>();
 
+
         midtermsPonderation = new ArrayList<Double>();
         finalsPonderation = new ArrayList<Double>();
         quizzesPonderation = new ArrayList<Double>();

@@ -9,7 +9,6 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -46,21 +45,24 @@ public class ViewCourse extends AppCompatActivity {
         setContentView(R.layout.activity_view_course);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // take the course info position
+        Intent intent = getIntent();
+        position =  Integer.parseInt(intent.getStringExtra("position"));
+        positionSemestre =  Integer.parseInt(intent.getStringExtra("semestrePosition"));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // envoie a lautre activity les info necessaire
+                Intent i = new Intent(ViewCourse.this, EditACourse.class);
+                i.putExtra("semesterPosition", positionSemestre+"");
+                i.putExtra("coursPosition", position+"");
+                startActivity(i);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // take the course info position
-        Intent intent = getIntent();
-        position =  Integer.parseInt(intent.getStringExtra("position"));
-        positionSemestre =  Integer.parseInt(intent.getStringExtra("semestrePosition"));
 
         //find the course in question
         currentCourse = Singleton.getSingleton().getSemesters().get(positionSemestre).getCourse().get(position);
@@ -74,21 +76,21 @@ public class ViewCourse extends AppCompatActivity {
         //populate the goal
         TextView goalText = (TextView)findViewById(R.id.txt_goal);
         if(currentCourse.getGoal().equals("N/A")){
-        goalText.setText(currentCourse.getGoal() );}
-        else{ goalText.setText(currentCourse.getGoal() +"");}
+        goalText.setText(currentCourse.getGrade() );}
+        else{ goalText.setText(currentCourse.getGrade() +"");}
 
         //populate the grade
         TextView gradeText = (TextView)findViewById(R.id.txt_grade);
         if(currentCourse.getGrade().equals("N/A")){
-        gradeText.setText(currentCourse.getGrade() );}
-        else{gradeText.setText(currentCourse.getGrade() + "%");}
+        gradeText.setText(currentCourse.getGoal() );}
+        else{gradeText.setText(currentCourse.getGoal() + "%");}
 
         //populate the goalLetter
         TextView goalLetterText = (TextView)findViewById(R.id.txt_goal_letter);
        goalLetterText.setText(currentCourse.getGoalLetter() + "");
 
         //populate the gradeLetter
-       TextView gradeLetterText = (TextView)findViewById(R.id.txt_grade_letter);
+        TextView gradeLetterText = (TextView)findViewById(R.id.txt_grade_letter);
         gradeLetterText.setText(currentCourse.getGradeLetter() + "");
 
         //change the name of each recipe
@@ -397,7 +399,7 @@ public class ViewCourse extends AppCompatActivity {
 
             // Make name Text
             TextView nameText = (TextView) itemView.findViewById(R.id.txt_evaluation);
-            nameText.setText("Oral Presentation "+ (position+1) +" :");
+            nameText.setText("Oral "+ (position+1) +" :");
 
             String currentGrade = currentCourse.getOralPresentations().get(position);
 
@@ -406,7 +408,7 @@ public class ViewCourse extends AppCompatActivity {
                 gradeLetterText.setText("N/A");
 
             }else {
-                gradeLetterText.setText(Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
             }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
@@ -414,7 +416,11 @@ public class ViewCourse extends AppCompatActivity {
                 gradeText.setText("N/A");}
             else{
                 gradeText.setText(currentGrade + "%");}
+
             return itemView;
+
+
+
 
         }
 

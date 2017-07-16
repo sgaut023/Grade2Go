@@ -63,6 +63,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.uottawa.gradetogo.Courses" />
         </activity>
+        <activity
+            android:name=".EditACourse"
+            android:label="@string/title_activity_edit_acourse"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.uottawa.gradetogo.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
