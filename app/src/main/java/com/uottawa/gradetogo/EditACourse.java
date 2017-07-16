@@ -3,6 +3,7 @@ package com.uottawa.gradetogo;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -33,6 +35,8 @@ public class EditACourse extends AppCompatActivity {
     private int positionSemestre;
     private int positionCours;
     private Course currentCourse;
+    private Semester currentSemestre;
+    private Uri picture;
     //variables
     private int numQuiz;
     private String NameCourse;
@@ -62,7 +66,7 @@ public class EditACourse extends AppCompatActivity {
         //cours qui sera mofifie
 
 
-        Semester currentSemestre = Singleton.getSingleton().getSemesters().get(positionSemestre);
+        currentSemestre = Singleton.getSingleton().getSemesters().get(positionSemestre);
         currentCourse = currentSemestre.getCourse().get(positionCours);
         //variables
         numQuiz =currentCourse.getNumQuiz();
@@ -77,6 +81,7 @@ public class EditACourse extends AppCompatActivity {
         //set picture
         ImageView img = (ImageView) findViewById(R.id.imageViewEditCourse);
         img.setImageURI(currentCourse.getIconId());
+        picture = currentCourse.getIconId();
 
         //set name
         EditText name = (EditText) findViewById(R.id.course_edit_name);
@@ -309,7 +314,7 @@ public class EditACourse extends AppCompatActivity {
             for (int i = 0; i < list.getCount(); i++) {
                 et2 = (EditText) list.getChildAt(i).findViewById(R.id.txt_ponderation_evaluation_edit);
                 if (et2 != null) {
-                    if (Double.parseDouble(String.valueOf(et2.getText()))>0){
+                    if (Double.parseDouble(String.valueOf(et2.getText()))>100){
                         Snackbar snackbar = Snackbar
                                 .make(v, "A grade must be higher that 0%", Snackbar.LENGTH_LONG);
                         snackbar.show();
@@ -333,9 +338,8 @@ public class EditACourse extends AppCompatActivity {
 
             } else {
 
-              /*  //sauver le cours
-                Course currentCourse = new Course(NameCourse, Double.toString(goal), picture);
-                currentSemester.addCourse(currentCourse);
+                //sauver le cours
+                currentSemestre.addCourse(currentCourse);
 
                 for (int j = 0; j < evaluationsName.size(); j++) {
                     String currentName = evaluationsName.get(j);
@@ -345,10 +349,10 @@ public class EditACourse extends AppCompatActivity {
                         currentCourse.getQuizzes().add("N/A");
                         currentCourse.getQuizzesPonderation().add(currentPonderation);
                     } else if (currentName.contains("Midterm")) {
-                        currentCourse.getMidterms().add("N/A");
+                        currentCourse.getMidterms().add("40.0");
                         currentCourse.getMidtermsPonderation().add(currentPonderation);
                     } else if (currentName.contains("Project")) {
-                        currentCourse.getProjects().add("N/A");
+                        currentCourse.getProjects().add("50.0");
                         currentCourse.getProjectsPonderation().add(currentPonderation);
                     } else if (currentName.contains("Oral")) {
                         currentCourse.getOralPresentations().add("N/A");
@@ -357,7 +361,7 @@ public class EditACourse extends AppCompatActivity {
                         currentCourse.getFinals().add("N/A");
                         currentCourse.getFinalsPonderation().add(currentPonderation);
                     } else if (currentName.contains("Laboratory")) {
-                        currentCourse.getLaboratories().add("N/A");
+                        currentCourse.getLaboratories().add("55.0");
                         currentCourse.getLaboratoriesPonderation().add(currentPonderation);
                     } else if (currentName.contains("Other")) {
                         currentCourse.getOthers().add("N/A");
@@ -366,16 +370,16 @@ public class EditACourse extends AppCompatActivity {
                 }
 
 
-                Toast.makeText(AddCourse.this, "The course was saved successfully", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(AddCourse.this, Courses.class);
+                Toast.makeText(EditACourse.this, "The course was saved successfully", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(EditACourse.this, Courses.class);
 
                 //retour page cours
-                i.putExtra("semesterSeason", currentSemester.getSeason());
-                i.putExtra("semesterYear", currentSemester.getYear());
-                i.putExtra("Position", semesterPosition + "");
+                i.putExtra("semesterSeason", currentSemestre.getSeason());
+                i.putExtra("semesterYear", currentSemestre.getYear());
+                i.putExtra("Position", positionSemestre + "");
                 //Toast.makeText( MainActivity.this, ""+position , Toast.LENGTH_LONG).show();
                 //  start the activity
-                startActivity(i);*/
+                startActivity(i);
 
 
             }
