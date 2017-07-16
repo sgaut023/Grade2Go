@@ -38,6 +38,7 @@ import java.util.ArrayList;
 
 import custom.DayAxisValueFormatter;
 import custom.MyAxisValueFormatter;
+import custom.MyXAxisValueFormatter;
 import custom.XYMarkerView;
 
 public class BarChartActivity extends DemoBase implements OnSeekBarChangeListener,
@@ -92,22 +93,29 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         xAxis.setValueFormatter(xAxisFormatter);
 
         IAxisValueFormatter custom = new MyAxisValueFormatter();
-
+        String[] values = new String[] { "A+","A","A","A+","A","A","A+","A","A" };
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTypeface(mTfLight);
         leftAxis.setLabelCount(8, false);
-        leftAxis.setValueFormatter(custom);
+        leftAxis.setValueFormatter(new MyXAxisValueFormatter(values));
         leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
-        leftAxis.setSpaceTop(15f);
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        leftAxis.setSpaceTop(10f);
+        leftAxis.setAxisMaximum(100f);
+        leftAxis.setGranularityEnabled(true);
+        leftAxis.setGranularity(1f);
+        leftAxis.setAxisMinimum(40f); // this replaces setStartAtZero(true)
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setDrawGridLines(false);
         rightAxis.setTypeface(mTfLight);
         rightAxis.setLabelCount(8, false);
         rightAxis.setValueFormatter(custom);
-        rightAxis.setSpaceTop(15f);
-        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        rightAxis.setValueFormatter(new MyXAxisValueFormatter(values));
+        rightAxis.setSpaceTop(10f);
+        rightAxis.setAxisMaximum(100f);
+        rightAxis.setGranularityEnabled(true);
+        rightAxis.setGranularity(1f);
+        rightAxis.setAxisMinimum(40f); // this replaces setStartAtZero(true)
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);

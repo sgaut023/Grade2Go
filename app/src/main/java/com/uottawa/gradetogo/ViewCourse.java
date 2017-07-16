@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -36,7 +37,6 @@ public class ViewCourse extends AppCompatActivity {
     public Course currentCourse;
     private ArrayList<String> midterms;
     public Button graphe_btn;
-
 
 
 
@@ -108,10 +108,17 @@ public class ViewCourse extends AppCompatActivity {
         graphe_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent  i = new Intent(ViewCourse.this, BarChartActivity.class);
-                i.putExtra("semesterPosition", positionSemestre+"");
-                i.putExtra("coursPosition", position+"");
-                startActivity(i);
+                if(!currentCourse.isGradesEmpty()) {
+                    Intent i = new Intent(ViewCourse.this, BarChartActivity.class);
+                    i.putExtra("semesterPosition", positionSemestre + "");
+                    i.putExtra("coursPosition", position + "");
+                    startActivity(i);
+                }else{
+
+                    Snackbar snackbar = Snackbar
+                            .make(v, "please add grade before showing the graphe", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
             }
         });
         //Toast.makeText( ViewCourse.this, ""+ midterms.get(1), Toast.LENGTH_LONG).show();

@@ -4,21 +4,22 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.uottawa.gradetogo.Singleton;
 
-import java.text.DecimalFormat;
+/**
+ * Created by ychah102 on 7/16/2017.
+ */
 
-public class MyAxisValueFormatter implements IAxisValueFormatter
-{
+public class MyXAxisValueFormatter implements IAxisValueFormatter {
 
-    private DecimalFormat mFormat;
+    private String[] mValues;
 
-    public MyAxisValueFormatter() {
-        mFormat = new DecimalFormat("###,###,###,##0.0");
+    public MyXAxisValueFormatter(String[] values) {
+        this.mValues = values;
     }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         String valueGrade  = Singleton.getSingleton().getGrade(value);
         return valueGrade;
-        //return mFormat.format(value);
     }
+
 }

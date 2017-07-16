@@ -64,7 +64,11 @@
                 android:value="com.uottawa.gradetogo.Courses" />
         </activity>
         <activity android:name=".EditACourse"></activity>
-        <activity android:name=".BarChartActivity"></activity>
+        <activity android:name=".BarChartActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.uottawa.gradetogo.ViewCourse" />
+        </activity>
     </application>
 
 </manifest>
