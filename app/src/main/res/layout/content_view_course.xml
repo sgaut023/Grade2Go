@@ -177,6 +177,13 @@
                     android:background="#DCDCDC"></ListView>
             </LinearLayout>
 
+            <Button
+                android:id="@+id/Vgraphe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:text="Visualiser le graphe" />
+
         </LinearLayout>
 
     </RelativeLayout>
