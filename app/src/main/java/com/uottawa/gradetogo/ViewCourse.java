@@ -6,8 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -47,9 +45,18 @@ public class ViewCourse extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // take the course info position
+
         Intent intent = getIntent();
-        position =  Integer.parseInt(intent.getStringExtra("position"));
-        positionSemestre =  Integer.parseInt(intent.getStringExtra("semestrePosition"));
+        if(intent.getStringExtra("position")==null){
+            position= Singleton.getSingleton().getLastCoursePosition();
+            positionSemestre=Singleton.getSingleton().getLastCoursePosition();
+
+        }
+        else {
+            position = Integer.parseInt(intent.getStringExtra("position"));
+            positionSemestre = Integer.parseInt(intent.getStringExtra("semestrePosition"));
+        }
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +67,7 @@ public class ViewCourse extends AppCompatActivity {
                 i.putExtra("semesterPosition", positionSemestre+"");
                 i.putExtra("coursPosition", position+"");
                 startActivity(i);
+                finish();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -113,6 +121,7 @@ public class ViewCourse extends AppCompatActivity {
                     i.putExtra("semesterPosition", positionSemestre + "");
                     i.putExtra("coursPosition", position + "");
                     startActivity(i);
+                    finish();
                 }else{
 
                     Snackbar snackbar = Snackbar
@@ -124,30 +133,6 @@ public class ViewCourse extends AppCompatActivity {
         //Toast.makeText( ViewCourse.this, ""+ midterms.get(1), Toast.LENGTH_LONG).show();
 
 
-
-
-        // ------------------------------------------
-
-        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbarLayout.setTitle("");
-                    isShow = true;
-                } else if(isShow) {
-                    collapsingToolbarLayout.setTitle(" ");
-                    isShow = false;
-                }
-            }
-        });
     }
 
     private void populateListView() {
@@ -232,12 +217,15 @@ public class ViewCourse extends AppCompatActivity {
 
     }
 
+
+
     @Override
     public void onBackPressed(){
         Intent i = new Intent(ViewCourse.this, Courses.class);
         i.putExtra("Position", positionSemestre+"");
         startActivity(i);
         finish();
+
     }
 
     private class MyListAdapter extends ArrayAdapter<String> {

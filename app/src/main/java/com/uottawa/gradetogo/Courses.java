@@ -47,7 +47,23 @@ public class Courses extends AppCompatActivity
         setContentView(R.layout.activity_courses);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // pass the semester info
+        Intent intent = getIntent();
+
+        //TEST
+        if(intent.getStringExtra("Position") == null){
+            semesterPosition =Singleton.getSingleton().getLastSemesterPosition();
+        }
+        else{semesterPosition = Integer.parseInt(intent.getStringExtra("Position"));}
+
+
+        SemesName = (TextView) findViewById(R.id.bar_Courses);
+        SemesName.setText(Singleton.getSingleton().getSemesters().get(semesterPosition).getSeason().toString()+" "+
+                Singleton.getSingleton().getSemesters().get(semesterPosition).getYear().toString());
+
         Button waste_btn = (Button) findViewById(R.id.toolbar_waste_button);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_courses);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +83,7 @@ public class Courses extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // pass the semester info
-        Intent intent = getIntent();
-        semesterPosition = Integer.parseInt(intent.getStringExtra("Position"));
-        SemesName = (TextView) findViewById(R.id.bar_Courses);
-        SemesName.setText(Singleton.getSingleton().getSemesters().get(semesterPosition).getSeason().toString()+" "+
-                Singleton.getSingleton().getSemesters().get(semesterPosition).getYear().toString());
+
         registerClickCallBack();
 
         //populate the listview
@@ -190,7 +201,7 @@ public class Courses extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View viewClick, int position, long id){
 
                 Course clickedCourse = Singleton.getSingleton().getSemesters().get(semesterPosition).getCourse().get(position);
-
+                Singleton.getSingleton().setLastCoursePosition(position);
                 Intent i = new Intent(Courses.this, ViewCourse.class);
                 i.putExtra("semestrePosition", semesterPosition+"");
                 i.putExtra("position", position+"");

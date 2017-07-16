@@ -377,12 +377,12 @@ public class EditACourse extends AppCompatActivity {
 
 
                 Toast.makeText(EditACourse.this, "The course was saved modified.", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(EditACourse.this, Courses.class);
+                Intent i = new Intent(EditACourse.this, ViewCourse.class);
 
                 //retour page cours
-                i.putExtra("semesterSeason", currentSemestre.getSeason());
-                i.putExtra("semesterYear", currentSemestre.getYear());
-                i.putExtra("Position", positionSemestre + "");
+                i.putExtra("semestrePosition", positionSemestre+"");
+                i.putExtra("position", positionCours);
+
                 //start the activity
                 startActivity(i);
 

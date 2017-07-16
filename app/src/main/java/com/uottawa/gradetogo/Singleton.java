@@ -14,6 +14,8 @@ public class Singleton {
     private static Singleton singleton; // l'instance du Singleton
     private ArrayList<Semester> semesters;
     private int University;
+    private int lastSemesterPosition;
+    private int lastCoursePosition;
     //les photos par defauts
     private Uri defaultImageA = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default");
     private Uri defaultImageB = Uri.parse("android.resource://com.uottawa.gradetogo/drawable/img_default2");
@@ -28,7 +30,8 @@ public class Singleton {
         semesters.add(new Semester("FALL", "2017"));
         semesters.add(new Semester("SUMMER", "2017"));
         semesters.add(new Semester("Winter", "2017"));
-
+        lastSemesterPosition=0;
+        lastCoursePosition=0;
 
 
         University  = 0;
@@ -150,6 +153,22 @@ public class Singleton {
             return defaultImageB;
         }else return defaultImageA;
 
+    }
+
+    public int getLastSemesterPosition(){
+        return lastSemesterPosition;
+    }
+
+    public void setLastSemesterPosition(int position){
+        lastSemesterPosition =position;
+    }
+
+    public int getLastCoursePosition(){
+        return lastSemesterPosition;
+    }
+
+    public void setLastCoursePosition(int position){
+        lastSemesterPosition =position;
     }
 
 }

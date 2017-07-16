@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View viewClick, int position, long id){
                 Semester clickedSemester = Singleton.getSingleton().getSemesters().get(position);
                 Intent i = new Intent(MainActivity.this, Courses.class);
-
+                Singleton.getSingleton().setLastSemesterPosition(position);
                 //envoyer info a activity qui affiche cours
                 i.putExtra("semesterSeason", clickedSemester.getSeason());
                 i.putExtra("semesterYear", clickedSemester.getYear());
