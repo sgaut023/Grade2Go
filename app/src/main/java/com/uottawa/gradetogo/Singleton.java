@@ -29,6 +29,8 @@ public class Singleton {
         semesters.add(new Semester("SUMMER", "2017"));
         semesters.add(new Semester("Winter", "2017"));
 
+
+
         University  = 0;
 
     }

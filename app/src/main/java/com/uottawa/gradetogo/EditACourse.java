@@ -312,15 +312,18 @@ public class EditACourse extends AppCompatActivity {
             EditText et2;
 
             for (int i = 0; i < list.getCount(); i++) {
-                et2 = (EditText) list.getChildAt(i).findViewById(R.id.txt_ponderation_evaluation_edit);
-                if (et2 != null) {
-                    if (Double.parseDouble(String.valueOf(et2.getText()))>100){
-                        Snackbar snackbar = Snackbar
-                                .make(v, "A grade must be higher that 0%", Snackbar.LENGTH_LONG);
-                        snackbar.show();
-
-                    }else result2.add(String.valueOf(et2.getText()));
-                }}
+                et2 = (EditText) list.getChildAt(i).findViewById(R.id.txt_grade_evaluation_edit);
+                String gradeEdit = et2.getText().toString();
+                int igradeEdit;
+                if (gradeEdit.isEmpty()) {
+                    result2.add(String.valueOf("N/A"));
+                } else {
+                    result2.add(String.valueOf(gradeEdit));
+                    Snackbar snackbar = Snackbar
+                            .make(v, "A grade must be higher that 0%", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+            }
 
 
 
@@ -339,44 +342,48 @@ public class EditACourse extends AppCompatActivity {
             } else {
 
 
+                //sauver le cours
+                Course currentCourse = new Course(NameCourse, Double.toString(goal), picture);
+                currentSemestre.addCoursePosition(positionCours,currentCourse);
+
                 for (int j = 0; j < evaluationsName.size(); j++) {
                     String currentName = evaluationsName.get(j);
                     Double currentPonderation = Double.parseDouble(result.get(j));
+                    String currentGrade = result2.get(j);
 
                     if (currentName.contains("Quiz")) {
-                        currentCourse.getQuizzes().add("N/A");
+                        currentCourse.getQuizzes().add(currentGrade);
                         currentCourse.getQuizzesPonderation().add(currentPonderation);
                     } else if (currentName.contains("Midterm")) {
-                        currentCourse.getMidterms().add("40.0");
+                        currentCourse.getMidterms().add(currentGrade);
                         currentCourse.getMidtermsPonderation().add(currentPonderation);
                     } else if (currentName.contains("Project")) {
-                        currentCourse.getProjects().add("50.0");
+                        currentCourse.getProjects().add(currentGrade);
                         currentCourse.getProjectsPonderation().add(currentPonderation);
                     } else if (currentName.contains("Oral")) {
-                        currentCourse.getOralPresentations().add("N/A");
+                        currentCourse.getOralPresentations().add(currentGrade);
                         currentCourse.getOralPresentationsPonderation().add(currentPonderation);
                     } else if (currentName.contains("Final")) {
-                        currentCourse.getFinals().add("N/A");
+                        currentCourse.getFinals().add(currentGrade);
                         currentCourse.getFinalsPonderation().add(currentPonderation);
                     } else if (currentName.contains("Laboratory")) {
-                        currentCourse.getLaboratories().add("55.0");
+                        currentCourse.getLaboratories().add(currentGrade);
                         currentCourse.getLaboratoriesPonderation().add(currentPonderation);
                     } else if (currentName.contains("Other")) {
-                        currentCourse.getOthers().add("N/A");
+                        currentCourse.getOthers().add(currentGrade);
                         currentCourse.getOthersPonderation().add(currentPonderation);
                     }
                 }
 
 
-                Toast.makeText(EditACourse.this, "The course was saved successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditACourse.this, "The course was saved modified.", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(EditACourse.this, Courses.class);
 
                 //retour page cours
                 i.putExtra("semesterSeason", currentSemestre.getSeason());
                 i.putExtra("semesterYear", currentSemestre.getYear());
                 i.putExtra("Position", positionSemestre + "");
-                //Toast.makeText( MainActivity.this, ""+position , Toast.LENGTH_LONG).show();
-                //  start the activity
+                //start the activity
                 startActivity(i);
 
 

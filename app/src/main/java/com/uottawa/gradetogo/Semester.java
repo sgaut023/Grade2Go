@@ -36,6 +36,9 @@ public class Semester {
     public void deleteNumCourse( ){
         numCourse--;
     }
+    public void addCoursePosition(int position, Course cours){
+        courses.set(position, cours);
+    }
 
     public String getSeason() {
         return season;
