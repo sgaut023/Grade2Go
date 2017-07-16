@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -32,9 +33,9 @@ public class ViewCourse extends AppCompatActivity {
     private ListView list;
     private static Context mContext;
     int deletetime = 0;
-    Course currentCourse;
+    public Course currentCourse;
     private ArrayList<String> midterms;
-
+    public Button graphe_btn;
 
 
 
@@ -103,7 +104,17 @@ public class ViewCourse extends AppCompatActivity {
         ImageView img= (ImageView) findViewById(R.id.defaultRecipeImage);
         img.setImageURI(currentCourse.getIconId());
 
+        graphe_btn = (Button) findViewById(R.id.Vgraphe);
+        graphe_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  i = new Intent(ViewCourse.this, BarChartActivity.class);
+                i.putExtra("course",position);
+                i.putExtra("positionSemestre",positionSemestre);
+                startActivity(i);
 
+            }
+        });
         //Toast.makeText( ViewCourse.this, ""+ midterms.get(1), Toast.LENGTH_LONG).show();
 
 

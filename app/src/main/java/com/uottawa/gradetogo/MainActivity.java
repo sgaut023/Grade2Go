@@ -295,8 +295,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.nav_help) {
-            Intent  i = new Intent(this, BarChartActivity.class);
-            startActivity(i);
+
         } else if (id == R.id.nav_about) {
 
 

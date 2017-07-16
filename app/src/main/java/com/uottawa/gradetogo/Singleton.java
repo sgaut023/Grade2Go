@@ -105,7 +105,34 @@ public class Singleton {
         }
         return true;
     }
-
+ /*   public int[] getGradeofCompenent(Course cours, String compenent){
+        ArrayList<String> copenentPen ;
+        int[] grade = new int[10];
+        switch (compenent){
+            case "midterms" :
+                copenentPen
+                break;
+            case "finals":
+                copenentPen
+                break;
+            case "quizzes":
+                copenentPen
+                break;
+            case "laboratories":
+                copenentPen
+                break;
+            case "projects":
+                copenentPen
+                break;
+            case "oralPresentations":
+                copenentPen
+                break;
+            case "others":
+                copenentPen
+                break;
+        }
+        return grade;
+    }*/
     //fonction qui retourne une image pour un cours
    public Uri getPhoto(int position){
 
