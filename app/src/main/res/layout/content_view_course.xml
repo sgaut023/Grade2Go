@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
-                        android:text="Goal:"
+                        android:text="Current grade:"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
                     <TextView
@@ -98,7 +98,7 @@
                         android:layout_width="186dp"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
-                        android:text="Current grade:"
+                        android:text="Goal:"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium"
                         android:textSize="18sp" />
 
@@ -158,6 +158,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#DCDCDC"></ListView>
+
                 <ListView
                     android:id="@+id/ListViewOralPresentation"
                     android:layout_width="match_parent"

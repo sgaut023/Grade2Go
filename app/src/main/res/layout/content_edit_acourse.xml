@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.uottawa.gradetogo.AddCourse"
-    tools:showIn="@layout/activity_add_course">
+    tools:context="com.uottawa.gradetogo.EditACourse"
+    tools:showIn="@layout/activity_edit_acourse">
 
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:paddingTop="16dp">
+        android:paddingTop="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageViewAddCourse"
+                android:id="@+id/imageViewEditCourse"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_weight="1"
@@ -41,15 +41,15 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/course_add_name"
+                android:id="@+id/course_edit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:ems="10"
                 android:hint="Enter your course name"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:textColor="?android:attr/textColorHint"
                 android:inputType="text"
                 android:selectAllOnFocus="false"
+                android:textColor="?android:attr/textColorHint"
                 android:textSize="18sp" />
 
             <TextView
@@ -67,26 +67,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:paddingBottom="20dp">
+                android:paddingBottom="12dp">
 
                 <TextView
                     android:id="@+id/textView15"
-                    android:layout_width="match_parent"
+                    android:layout_width="237dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:paddingLeft="5dp"
                     android:text="Goal :"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/course_add_goal"
+                    android:id="@+id/course_edit_goal"
                     android:layout_width="64dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="right"
-                    android:inputType="numberDecimal"
-                    android:textColor="?android:attr/textColorHint"
                     android:backgroundTint="@color/colorPrimaryDark"
+                    android:ems="10"
+                    android:gravity="left|right"
+                    android:inputType="numberDecimal"
                     android:selectAllOnFocus="false"
                     android:textSize="18sp" />
 
@@ -103,34 +101,37 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="15dp">
-
-
-                <Button
-                    android:id="@+id/btn_add_evaluation"
-                    android:layout_width="200dp"
-                    android:layout_height="33dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:elevation="6dp"
-                    android:text="Add Evaluations"
-                    android:textColor="@android:color/background_light" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:paddingLeft="1dp"
+                android:paddingRight="16dp">
 
                 <TextView
                     android:id="@+id/txt_evaluations_order"
-                    android:layout_width="match_parent"
+                    android:layout_width="98dp"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:paddingTop="10dp"
+                    android:gravity="left"
+                    android:text="Evaluation"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.24"
+                    android:gravity="center"
+                    android:text="Weight"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Grade"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -143,12 +144,32 @@
                 android:paddingBottom="20dp">
 
                 <ListView
-                    android:id="@+id/ListViewAddCourse"
+                    android:id="@+id/ListViewEditCourse"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:divider="@null"
-                    android:dividerHeight="0dp"/>
+                    android:dividerHeight="0dp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="30dp">
+
+
+                <Button
+                    android:id="@+id/btn_edit_evaluation"
+                    android:layout_width="200dp"
+                    android:layout_height="33dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:elevation="6dp"
+                    android:text="Add Evaluations"
+                    android:textColor="@android:color/background_light" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -173,7 +194,7 @@
 
 
     </LinearLayout>
-        </ScrollView>
+    </ScrollView>
 
 
 

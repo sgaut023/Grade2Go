@@ -57,12 +57,13 @@
         <activity
             android:name=".AddCourse"
             android:label="@string/title_activity_add_course"
-            android:parentActivityName=".Courses"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.uottawa.gradetogo.Courses" />
         </activity>
+        <activity android:name=".EditACourse"></activity>
         <activity android:name=".BarChartActivity"></activity>
     </application>
 
