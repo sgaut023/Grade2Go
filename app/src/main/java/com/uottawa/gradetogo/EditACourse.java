@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,12 +28,14 @@ public class EditACourse extends AppCompatActivity {
     // variable d'instances
     private ArrayAdapter<String> adapter;
     Button mShowDialog;
+    private double goal;
     private ListView list;
     private int positionSemestre;
     private int positionCours;
     private Course currentCourse;
     //variables
     private int numQuiz;
+    private String NameCourse;
     private int numMidterm;
     private int numProject;
     private int numOralPresentation;
@@ -69,9 +72,6 @@ public class EditACourse extends AppCompatActivity {
         numFinalExamen=currentCourse.getNumFinal();
         numLaboratory=currentCourse.getNumLaboratory();
         numOther=currentCourse.getNumOther();
-        evaluationsName = currentCourse.getEvaluationsName();
-        grades =currentCourse.getGrades();
-        ponderations =currentCourse.getPonderations();
 
         //populate the activity with the information
         //set picture
@@ -87,7 +87,18 @@ public class EditACourse extends AppCompatActivity {
         goal.setText(currentCourse.getGoal());
 
         //populate the listView
+        evaluationsName = currentCourse.getEvaluationsName();
+        grades =currentCourse.getGrades();
+        ponderations =currentCourse.getPonderations();
         populateListView();
+
+        final Button button_save = (Button) findViewById(R.id.btn_editsave_semester);
+        button_save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                clickOnSave(v);
+            }
+
+        });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -133,14 +144,60 @@ public class EditACourse extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //savoir combien il y a de chacun des evaluations
-                        int nouveauNumQuiz = Integer.parseInt(mSpinner.getSelectedItem().toString())-numQuiz;
-                        int nouveauNumMidterm = Integer.parseInt(mSpinner2.getSelectedItem().toString())-numMidterm;
-                        int nouveauNumProject = Integer.parseInt(mSpinner3.getSelectedItem().toString())-numProject;
-                        int nonveauOralPresentation = Integer.parseInt(mSpinner4.getSelectedItem().toString())-numOralPresentation;
-                        int nouveauNumFinalExamen = Integer.parseInt(mSpinner5.getSelectedItem().toString())-numFinalExamen;
-                        int nouveauNumLaboratory = Integer.parseInt(mSpinner6.getSelectedItem().toString())-numLaboratory;
-                        int nouveauNumOther = Integer.parseInt(mSpinner7.getSelectedItem().toString())-numOther;
+                        numQuiz = Integer.parseInt(mSpinner.getSelectedItem().toString());
+                        numMidterm = Integer.parseInt(mSpinner2.getSelectedItem().toString());
+                        numProject = Integer.parseInt(mSpinner3.getSelectedItem().toString());
+                        numOralPresentation = Integer.parseInt(mSpinner4.getSelectedItem().toString());
+                        numFinalExamen = Integer.parseInt(mSpinner5.getSelectedItem().toString());
+                        numLaboratory = Integer.parseInt(mSpinner6.getSelectedItem().toString());
+                        numOther = Integer.parseInt(mSpinner7.getSelectedItem().toString());
 
+                        evaluationsName = new ArrayList<String>();
+                        grades = new ArrayList<String>();
+                        ponderations = new ArrayList<Double>();
+
+                        //mettre les noms des evaluations dans un tableau
+                        for (int j = 0; j < numQuiz; j++) {
+                            evaluationsName.add("Quiz " + (j + 1) + ":");
+                            grades.add("N/A");
+                            ponderations.add(0.0);
+                        }
+
+                        for (int j = 0; j < numMidterm; j++) {
+                            evaluationsName.add("Midterm " + (j + 1) + ":");
+                            grades.add("N/A");
+                            ponderations.add(0.0);
+                        }
+
+                        for (int j = 0; j < numProject; j++) {
+                            evaluationsName.add("Project " + (j + 1) + ":");
+                            grades.add("N/A");
+                            ponderations.add(0.0);
+                        }
+
+                        for (int j = 0; j < numOralPresentation; j++) {
+                            evaluationsName.add("Oral Presentation " + (j + 1) + ":");
+                            grades.add("N/A");
+                            ponderations.add(0.0);
+                        }
+
+                        for (int j = 0; j < numFinalExamen; j++) {
+                            evaluationsName.add("Final Exam " + (j + 1) + ":");
+                            grades.add("N/A");
+                            ponderations.add(0.0);
+                        }
+
+                        for (int j = 0; j < numLaboratory; j++) {
+                            evaluationsName.add("Laboratory " + (j + 1) + ":");
+                            grades.add("N/A");
+                            ponderations.add(0.0);
+                        }
+
+                        for (int j = 0; j < numOther; j++) {
+                            evaluationsName.add("Other " + (j + 1) + ":");
+                            grades.add("N/A");
+                            ponderations.add(0.0);
+                        }
 
 
 
@@ -173,6 +230,156 @@ public class EditACourse extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void clickOnSave(View v) {
+
+        //prendre le texte pour le nom du cours
+        EditText textName = (EditText) findViewById(R.id.course_edit_name);
+        NameCourse = textName.getText().toString();
+
+        //condition pour ne pas avoir un nom vide
+        if (NameCourse.length() == 0) {// si l'utilisateur n'entre pas de texte, on doit ecrire un message derreur
+            Snackbar snackbar = Snackbar
+                    .make(v, "You must enter a name for the course.", Snackbar.LENGTH_LONG);
+
+            snackbar.show();
+            return;
+        }
+
+        //prendre le texte pour le but de letudiant
+
+        //prendre le texte pour le nom du cours
+        EditText textGoal = (EditText) findViewById(R.id.course_edit_goal);
+        String goalString = (textGoal.getText().toString());
+
+
+        if (goalString.isEmpty()) {
+            Snackbar snackbar = Snackbar
+                    .make(v, "You must enter a goal for the course.", Snackbar.LENGTH_LONG);
+            snackbar.show();
+            return;
+        }
+        //condition pour avoir un goal entre 0 et 100
+        else {
+            goal = Double.parseDouble(goalString);
+
+            if (goal <= 0) {
+                Snackbar snackbar = Snackbar
+                        .make(v, "The goal must be higher than 0%.", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                return;
+            } else if (goal > 100) {
+                Snackbar snackbar = Snackbar
+                        .make(v, "The goal must be lower than 100%.", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                return;
+            }
+        }
+        //user muster enter evaluations
+        if (numQuiz == 0 && numLaboratory == 0 && numProject == 0 && numFinalExamen == 0 && numOralPresentation == 0 && numMidterm == 0 && numOther == 0) {
+            Snackbar snackbar = Snackbar
+                    .make(v, "You must at least add one evaluation for this course.", Snackbar.LENGTH_LONG);
+            snackbar.show();
+            return;
+        } else {
+
+            /** get all values of the EditText-Fields
+             find your ListView local variable you had created for example :
+             private ListView listview;
+             You also need to catch null value of EditText first. */
+            ArrayList<String> result = new ArrayList<String>();
+            EditText et;
+            double total = 0;
+
+            for (int i = 0; i < list.getCount(); i++) {
+                et = (EditText) list.getChildAt(i).findViewById(R.id.txt_ponderation_evaluation_edit);
+                if (et != null) {
+                    result.add(String.valueOf(et.getText()));
+                    //le total de la ponderation
+                    if (!String.valueOf(et.getText()).isEmpty()) {
+                        total = total + Double.parseDouble(String.valueOf(et.getText()));
+
+                    }
+                }
+            }
+            ArrayList<String> result2 = new ArrayList<String>();
+            EditText et2;
+
+            for (int i = 0; i < list.getCount(); i++) {
+                et2 = (EditText) list.getChildAt(i).findViewById(R.id.txt_ponderation_evaluation_edit);
+                if (et2 != null) {
+                    if (Double.parseDouble(String.valueOf(et2.getText()))>0){
+                        Snackbar snackbar = Snackbar
+                                .make(v, "A grade must be higher that 0%", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+
+                    }else result2.add(String.valueOf(et2.getText()));
+                }}
+
+
+
+            if (result.size() != evaluationsName.size()) {
+
+                Snackbar snackbar = Snackbar
+                        .make(v, "You must enter a weighting for each evaluation", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                return;
+            } else if (total != 100) {
+                Snackbar snackbar = Snackbar
+                        .make(v, "The total of all weights must be 100%. Currently, the total is " + (int) total + " %.", Snackbar.LENGTH_LONG);
+                snackbar.show();
+                return;
+
+            } else {
+
+              /*  //sauver le cours
+                Course currentCourse = new Course(NameCourse, Double.toString(goal), picture);
+                currentSemester.addCourse(currentCourse);
+
+                for (int j = 0; j < evaluationsName.size(); j++) {
+                    String currentName = evaluationsName.get(j);
+                    Double currentPonderation = Double.parseDouble(result.get(j));
+
+                    if (currentName.contains("Quiz")) {
+                        currentCourse.getQuizzes().add("N/A");
+                        currentCourse.getQuizzesPonderation().add(currentPonderation);
+                    } else if (currentName.contains("Midterm")) {
+                        currentCourse.getMidterms().add("N/A");
+                        currentCourse.getMidtermsPonderation().add(currentPonderation);
+                    } else if (currentName.contains("Project")) {
+                        currentCourse.getProjects().add("N/A");
+                        currentCourse.getProjectsPonderation().add(currentPonderation);
+                    } else if (currentName.contains("Oral")) {
+                        currentCourse.getOralPresentations().add("N/A");
+                        currentCourse.getOralPresentationsPonderation().add(currentPonderation);
+                    } else if (currentName.contains("Final")) {
+                        currentCourse.getFinals().add("N/A");
+                        currentCourse.getFinalsPonderation().add(currentPonderation);
+                    } else if (currentName.contains("Laboratory")) {
+                        currentCourse.getLaboratories().add("N/A");
+                        currentCourse.getLaboratoriesPonderation().add(currentPonderation);
+                    } else if (currentName.contains("Other")) {
+                        currentCourse.getOthers().add("N/A");
+                        currentCourse.getOthersPonderation().add(currentPonderation);
+                    }
+                }
+
+
+                Toast.makeText(AddCourse.this, "The course was saved successfully", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(AddCourse.this, Courses.class);
+
+                //retour page cours
+                i.putExtra("semesterSeason", currentSemester.getSeason());
+                i.putExtra("semesterYear", currentSemester.getYear());
+                i.putExtra("Position", semesterPosition + "");
+                //Toast.makeText( MainActivity.this, ""+position , Toast.LENGTH_LONG).show();
+                //  start the activity
+                startActivity(i);*/
+
+
+            }
+        }
     }
 
 
@@ -210,11 +417,12 @@ public class EditACourse extends AppCompatActivity {
 
             //populate the weight
             EditText ponderationText = (EditText) itemView.findViewById(R.id.txt_ponderation_evaluation_edit);
-            ponderationText.setText(ponderations.get(position) +"");
+            if(ponderations.get(position)!= 0){
+            ponderationText.setText(ponderations.get(position) +"");}
 
             //populate the grade
             EditText gradeText = (EditText) itemView.findViewById(R.id.txt_grade_evaluation_edit);
-            if(!currentCourse.getGrades().get(position).equals("N/A")){
+            if(!grades.get(position).equals("N/A")){
             gradeText.setText(grades.get(position) +"");}
 
             return itemView;
