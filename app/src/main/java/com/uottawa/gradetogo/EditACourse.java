@@ -338,8 +338,6 @@ public class EditACourse extends AppCompatActivity {
 
             } else {
 
-                //sauver le cours
-                currentSemestre.addCourse(currentCourse);
 
                 for (int j = 0; j < evaluationsName.size(); j++) {
                     String currentName = evaluationsName.get(j);
