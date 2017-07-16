@@ -2,11 +2,13 @@
 package com.uottawa.gradetogo;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -41,6 +43,9 @@ import custom.XYMarkerView;
 public class BarChartActivity extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
 
+    private int positionCours;
+    private int positionSemestre;
+    public Course currentCourse;
     protected BarChart mChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +71,15 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
         mChart.setDrawGridBackground(false);
         // mChart.setDrawYLabels(false);
+        Intent intent = getIntent();
+        positionSemestre = Integer.parseInt(intent.getStringExtra("semesterPosition"));
+        positionCours = Integer.parseInt(intent.getStringExtra("coursPosition"));
+
+        //cours qui sera mofifie
+
+
+        Semester currentSemestre = Singleton.getSingleton().getSemesters().get(positionSemestre);
+        currentCourse = currentSemestre.getCourse().get(positionCours);
 
         IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(mChart);
 
@@ -148,17 +162,18 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         float start = 1f;
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
-
-        for (int i = (int) start; i < start + count + 1; i++) {
-            float mult = (range + 1);
-            float val = (float) (Math.random() * mult);
-
-            if (Math.random() * 100 < 25) {
-                yVals1.add(new BarEntry(i, val, getResources().getDrawable(R.drawable.star)));
-            } else {
-                yVals1.add(new BarEntry(i, val));
+        //mettre espace entre les listview
+        ArrayList<String> grades = currentCourse.getGrades();
+        float fx = 0f;
+        for(int i=0; i<grades.size(); i++){
+            if(!grades.get(i).equals("N/A")){
+                System.out.print(Float.parseFloat(grades.get(i)));
+                yVals1.add(new BarEntry(fx, Float.parseFloat(grades.get(i))));
+                fx++;
             }
         }
+
+
 
         BarDataSet set1;
 

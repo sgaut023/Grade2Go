@@ -109,10 +109,9 @@ public class ViewCourse extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent  i = new Intent(ViewCourse.this, BarChartActivity.class);
-                i.putExtra("course",position);
-                i.putExtra("positionSemestre",positionSemestre);
+                i.putExtra("semesterPosition", positionSemestre+"");
+                i.putExtra("coursPosition", position+"");
                 startActivity(i);
-
             }
         });
         //Toast.makeText( ViewCourse.this, ""+ midterms.get(1), Toast.LENGTH_LONG).show();
