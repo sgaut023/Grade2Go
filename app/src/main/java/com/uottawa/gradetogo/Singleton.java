@@ -55,7 +55,7 @@ public class Singleton {
         int uni = getUniversity();
         switch (uni) {
             case 0 :
-                if(perc > 90){
+                if(perc >= 90){
                     return "A+";
                 }
                 else if(perc >= 85 && perc <90){return "A";}
@@ -68,7 +68,7 @@ public class Singleton {
                 else if(perc >= 50 && perc <55){return "F";}
                 else{return "E";}
             case 1 :
-                if(perc > 90){
+                if(perc >= 90){
                     return "A+";
                 }
                 else if(perc >= 85 && perc <90){return "A";}
