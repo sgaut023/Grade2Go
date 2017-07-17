@@ -50,6 +50,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
             public void onClick(View v) {
                 switch (spn_univ.getSelectedItem().toString()){
                     case "University of Ottawa" :
+                        System.out.print("");
                         imgBarem.setImageResource(R.drawable.ic_grade_uo);
                         break;
                     case "Carelton University" :
