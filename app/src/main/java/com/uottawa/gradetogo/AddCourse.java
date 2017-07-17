@@ -98,7 +98,7 @@ public class AddCourse extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(AddCourse.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
-                mBuilder.setTitle("Select the number of evaluation:");
+                mBuilder.setTitle("Select the number of evaluations:");
                 //les 7 spinners
                 final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner_add_evaluation);
                 final Spinner mSpinner2 = (Spinner) mView.findViewById(R.id.spinner_add_evaluation2);
@@ -177,7 +177,7 @@ public class AddCourse extends AppCompatActivity {
                         if(numQuiz!=0 || numLaboratory!=0 || numProject!=0 ||numFinalExamen!=0 || numOralPresentation!=0 ||numMidterm!=0 ||numOther!=0){
                             //populate the text to give indication
                             TextView indicationText = (TextView)findViewById(R.id.txt_evaluations_order);
-                            indicationText.setText("Enter the weighting of each evaluation: ");
+                            indicationText.setText("Enter the weighting for each evaluation: ");
                         }else{
                             //populate the text to give indication
                             TextView indicationText = (TextView)findViewById(R.id.txt_evaluations_order);
@@ -248,14 +248,14 @@ public class AddCourse extends AppCompatActivity {
         else {
             goal = Double.parseDouble(goalString);
 
-            if (goal <= 0) {
+            if (goal < 0) {
                 Snackbar snackbar = Snackbar
-                        .make(v, "The goal must be higher than 0%.", Snackbar.LENGTH_LONG);
+                        .make(v, "The objective must be higher or equal than 0%.", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 return;
             } else if (goal > 100) {
                 Snackbar snackbar = Snackbar
-                        .make(v, "The goal must be lower than 100%.", Snackbar.LENGTH_LONG);
+                        .make(v, "The objective must be less or equal than 100%.", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 return;
             }
@@ -295,7 +295,7 @@ public class AddCourse extends AppCompatActivity {
                 return;
             } else if (total != 100) {
                 Snackbar snackbar = Snackbar
-                        .make(v, "The total of all weights must be 100%. Currently, the total is " + (int) total + " %.", Snackbar.LENGTH_LONG);
+                        .make(v, "The total of all weights must be 100%. Currently, the total is " + total + "%.", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 return;
 
@@ -334,7 +334,7 @@ public class AddCourse extends AppCompatActivity {
                 }
 
 
-                Toast.makeText(AddCourse.this, "The course was saved successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddCourse.this, "The course was successfully saved.", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(AddCourse.this, Courses.class);
 
                 //retour page cours

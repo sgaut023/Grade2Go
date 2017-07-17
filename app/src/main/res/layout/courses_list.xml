@@ -101,7 +101,7 @@
                 android:background="#fefefe"
                 android:gravity="left|center_vertical|center_horizontal"
                 android:paddingLeft="16dp"
-                android:text="Goal: "
+                android:text="Objective:"
                 android:textColor="#85000000"
                 android:textSize="14sp" />
 

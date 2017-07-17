@@ -72,10 +72,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.uottawa.gradetogo.ViewCourse" />
         </activity>
-        <activity android:name=".BarChartActivity">
+
+        <activity android:name=".BarChartActivity"
+            android:parentActivityName=".ViewCourse">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.uottawa.gradetogo.Courses" />
+                android:value="com.uottawa.gradetogo.ViewCourse" />
         </activity>
     </application>
 

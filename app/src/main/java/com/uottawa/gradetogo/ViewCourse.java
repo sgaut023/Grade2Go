@@ -217,7 +217,16 @@ public class ViewCourse extends AppCompatActivity {
 
     }
 
-
+  /*  @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return false;
+    }
+*/
 
     @Override
     public void onBackPressed(){
@@ -419,7 +428,7 @@ public class ViewCourse extends AppCompatActivity {
                 gradeLetterText.setText("N/A");
 
             }else {
-                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Double.parseDouble(currentGrade)));
             }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);

@@ -120,7 +120,7 @@ public class Courses extends AppCompatActivity
                     }
                 });}else{
                     Snackbar snackbar = Snackbar
-                            .make(v, "there is no courses to delete please add course", Snackbar.LENGTH_LONG);
+                            .make(v, "There is no course to delete, please add a course.", Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }
