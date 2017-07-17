@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="3dp"
                 android:paddingTop="10dp"
-                android:text="Enter your goal for this course:"
+                android:text="Enter your objective for this course:"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="5dp"
-                    android:text="Goal :"
+                    android:text="Objective:"
                     android:textSize="18sp" />
 
                 <EditText
@@ -114,7 +114,7 @@
                     android:layout_height="33dp"
                     android:background="@color/colorPrimaryDark"
                     android:elevation="6dp"
-                    android:text="Add Evaluations"
+                    android:text="Number of rating components"
                     android:textColor="@android:color/background_light" />
 
             </LinearLayout>

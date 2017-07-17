@@ -116,7 +116,20 @@ public class Course {
     }
 
     public String getGrade() {
-        return grade;
+            boolean empty= true;
+            double gradeTemporaire=0;
+            for (int i =0; i< getGrades().size(); i++){
+                if(getGrades().get(i)!="N/A"){
+                    gradeTemporaire = gradeTemporaire+ Double.parseDouble(getGrades().get(i))*
+                            (getPonderations().get(i))/100;
+                    empty = false;
+
+                }
+            }
+            if(empty == false)  grade=Double.toString(gradeTemporaire);
+            else grade ="N/A";
+
+            return grade;
     }
 
     public String getGoalLetter() {

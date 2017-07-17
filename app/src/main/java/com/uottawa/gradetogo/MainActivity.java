@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity
                 Singleton.getSingleton().setUniversity(0);
 
                 Snackbar snackbar = Snackbar
-                        .make(v, "Select the semester to remove", Snackbar.LENGTH_LONG);
+                        .make(v, "Click on the semester you want to delete.", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view,
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
                             registerClickCallBack();
                             if(show == 1) {
                                 Snackbar snackbar = Snackbar
-                                        .make(view, "The semester was successfully removed", Snackbar.LENGTH_LONG);
+                                        .make(view, "The semester was successfully deleted.", Snackbar.LENGTH_LONG);
                                 snackbar.show();
                             }
                             deletetime = 0;
@@ -152,8 +152,8 @@ public class MainActivity extends AppCompatActivity
             //Log.d("largest no is",""+largestitemno);
             //deleting the latest added by subtracting one 1
             AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-            builder1.setMessage("Do you want to delete the "+ Singleton.getSingleton().getSemesters().get(position).getSeason()+ " "+
-                    Singleton.getSingleton().getSemesters().get(position).getYear()+ " semester?");
+            builder1.setMessage("Do you want to delete the "+ Singleton.getSingleton().getSemesters().get(position).getYear()+ " "+
+                    Singleton.getSingleton().getSemesters().get(position).getSeason()+ " semester?");
             builder1.setCancelable(true);
 
             builder1.setPositiveButton(
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity
 
 
             TextView courseText = (TextView) itemView.findViewById(R.id.txt_course_number);
-            courseText.setText("Number of course: "+currentSemester.getNumCourse());
+            courseText.setText("Number of courses: "+currentSemester.getNumCourse());
             return itemView;
 
 

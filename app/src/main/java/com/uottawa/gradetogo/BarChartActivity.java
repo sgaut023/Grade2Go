@@ -8,11 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -29,7 +27,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
@@ -145,10 +142,6 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return true;
-    }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -235,4 +228,30 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
 
     @Override
     public void onNothingSelected() { }
+
+   @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(BarChartActivity.this, ViewCourse.class);
+        //retour page cours
+        i.putExtra("semestrePosition", positionSemestre+"");
+        i.putExtra("position", positionCours);
+
+        //start the activity
+        startActivity(i);
+        finish();
+
+    }
+
+
 }
