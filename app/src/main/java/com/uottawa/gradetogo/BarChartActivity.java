@@ -100,7 +100,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         leftAxis.setAxisMaximum(100f);
         leftAxis.setGranularityEnabled(true);
         leftAxis.setGranularity(1f);
-        leftAxis.setAxisMinimum(40f); // this replaces setStartAtZero(true)
+        leftAxis.setAxisMinimum(10f); // this replaces setStartAtZero(true)
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setDrawGridLines(false);
@@ -112,7 +112,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         rightAxis.setAxisMaximum(100f);
         rightAxis.setGranularityEnabled(true);
         rightAxis.setGranularity(1f);
-        rightAxis.setAxisMinimum(40f); // this replaces setStartAtZero(true)
+        rightAxis.setAxisMinimum(10f); // this replaces setStartAtZero(true)
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
