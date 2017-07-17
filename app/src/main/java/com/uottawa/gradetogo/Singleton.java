@@ -78,13 +78,23 @@ public class Singleton {
                 else if(perc >= 80 && perc <85){return "A-";}
                 else if(perc >= 75 && perc <80){return "B+";}
                 else if(perc >= 70 && perc <75){return "B";}
+                else if(perc >= 65 && perc <70){return "C+";}
+                else if(perc >= 60 && perc <65){return "C";}
+                else if(perc >= 55 && perc <60){return "D";}
+                else if(perc >= 50 && perc <55){return "F";}
+                else{return "E";}
+            case  2 :
+                if(perc >= 90){
+                    return "A+";
+                }
+                else if(perc >= 85 && perc <90){return "A";}
+                else if(perc >= 80 && perc <85){return "A-";}
+                else if(perc >= 75 && perc <80){return "B+";}
+                else if(perc >= 70 && perc <75){return "B";}
                 else if(perc >= 65 && perc <70){return "B-";}
                 else if(perc >= 60 && perc <65){return "C+";}
                 else if(perc >= 55 && perc <60){return "C";}
                 else if(perc >= 50 && perc <55){return "D";}
-                else{return "E";}
-            case  2 :
-                break;
         }
         return "error";
     }

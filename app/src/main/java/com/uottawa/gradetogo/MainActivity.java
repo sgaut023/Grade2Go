@@ -296,7 +296,8 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, Settings.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_help) {}
+        } else if (id == R.id.nav_help) {Intent i = new Intent(this, Help.class);
+            startActivity(i);}
 
 
 

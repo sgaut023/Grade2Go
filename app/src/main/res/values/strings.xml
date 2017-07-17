@@ -11,6 +11,7 @@
     <string name="title_activity_courses">Courses</string>
     <string name="title_activity_view_course"></string>
     <string name="title_activity_add_course">Add Course</string>
+    @string/PreHelp
 
     <string-array name="evaluationNUmber">
         <item>0</item>
@@ -27,4 +28,13 @@
 
     </string-array>
     <string name="title_activity_edit_acourse">Edit a Course</string>
+    <string name="title_activity_help">Help</string>
+    <string name="PreHelp">
+        The application allows you to quickly obtain your weighted average and graphically visualize your grades.
+    </string>
+
+    <string name="PreHelp2">
+    Instructions for creating a semester:
+    </string>
+
 </resources>
