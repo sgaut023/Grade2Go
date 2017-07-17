@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
@@ -39,7 +41,7 @@ import custom.MyXAxisValueFormatter;
 import custom.XYMarkerView;
 
 public class BarChartActivity extends DemoBase implements OnSeekBarChangeListener,
-        OnChartValueSelectedListener {
+        OnChartValueSelectedListener{
 
     private int positionCours;
     private int positionSemestre;
@@ -52,7 +54,19 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_barchart);
 
-        mChart = (BarChart) findViewById(R.id.chart1);
+        ImageButton button = (ImageButton) findViewById(R.id.back);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                //take the information from the spinner
+                onBackPressed();
+
+
+
+            }});
+
+
+    mChart = (BarChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
 
         mChart.setDrawBarShadow(false);

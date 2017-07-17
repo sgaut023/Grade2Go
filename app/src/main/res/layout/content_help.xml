@@ -75,8 +75,7 @@
                     android:id="@+id/textView5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    tools:text='1- Click on the "plus" button.' />
+                    android:text='1- Click on the "plus" button.' />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -113,8 +112,7 @@
                     android:id="@+id/textView53"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    tools:text='1- Click on the semester in which you want to create your course.' />
+                    android:text='1- Click on the semester in which you want to create your course.' />
 
                 <TextView
                     android:id="@+id/textView63"
@@ -176,8 +174,7 @@
                     android:id="@+id/textView55"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    tools:text='1-Click on the course you want to modify.' />
+                    android:text='1-Click on the course you want to modify.' />
 
                 <TextView
                     android:id="@+id/tex5tView6"
