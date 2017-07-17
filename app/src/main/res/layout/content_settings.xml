@@ -56,6 +56,14 @@
             android:orientation="horizontal"
             android:paddingTop="10dp">
 
+            <ImageView
+                android:id="@+id/img_barem"
+                android:layout_width="247dp"
+                android:layout_height="365dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_grade_uo"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7" />
         </LinearLayout>
 
         <LinearLayout
