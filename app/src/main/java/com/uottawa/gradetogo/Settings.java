@@ -45,23 +45,6 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         imgBarem = (ImageView) findViewById(R.id.img_barem);
         save_btn = (Button) findViewById(R.id.btn_save_setting);
         spn_univ = (Spinner) findViewById(R.id.spin_uni);
-        spn_univ.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (spn_univ.getSelectedItem().toString()){
-                    case "University of Ottawa" :
-                        System.out.print("");
-                        imgBarem.setImageResource(R.drawable.ic_grade_uo);
-                        break;
-                    case "Carelton University" :
-                        imgBarem.setImageResource(R.drawable.ic_grade_uqo);
-                        break;
-                    case "Université du Québec en Outaouais" :
-                        imgBarem.setImageResource(R.drawable.ic_grade_uo);
-                        break;
-                }
-            }
-        });
         final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
         save_btn.setOnClickListener(new View.OnClickListener() {
