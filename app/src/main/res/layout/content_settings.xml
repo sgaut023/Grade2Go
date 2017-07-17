@@ -25,13 +25,14 @@
             android:layout_gravity="center_horizontal"
             android:gravity="left"
             android:orientation="horizontal"
-            android:paddingTop="35dp">
+            android:paddingTop="40dp">
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="10dp"
                 android:paddingTop="15dp"
                 android:text="Select your university :"
                 android:textSize="18sp" />
@@ -57,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
             android:orientation="horizontal"
+            android:paddingLeft="60dp"
             android:paddingTop="10dp">
 
             <ImageView
@@ -74,8 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="10dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_save_setting"

@@ -2,7 +2,7 @@
 <resources>
     <string-array name="setting_university_list">
         <item>University of Ottawa</item>
-        <item>Carelton University</item>
+        <item>Carleton University</item>
         <item>Université du Québec en Outaouais</item>
     </string-array>
 

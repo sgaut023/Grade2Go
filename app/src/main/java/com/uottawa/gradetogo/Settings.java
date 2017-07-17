@@ -45,6 +45,8 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
         imgBarem = (ImageView) findViewById(R.id.img_barem);
         save_btn = (Button) findViewById(R.id.btn_save_setting);
         spn_univ = (Spinner) findViewById(R.id.spin_uni);
+        //set the default according to value
+        spn_univ.setSelection(Singleton.getSingleton().getUniversity());
         final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
         save_btn.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +57,7 @@ public class Settings extends AppCompatActivity implements NavigationView.OnNavi
                         Singleton.getSingleton().setUniversity(0);
                         imgBarem.setImageResource(R.drawable.ic_grade_uo);
                         break;
-                    case "Carelton University" :
+                    case "Carleton University" :
                         imgBarem.setImageResource(R.drawable.ic_grade_uqo);
                         Singleton.getSingleton().setUniversity(1);
                         break;
