@@ -47,8 +47,8 @@ public class ViewCourse extends AppCompatActivity {
         // take the course info position
 
         Intent intent = getIntent();
-        if(intent.getStringExtra("position")==null ||intent.getStringExtra("smestrePosition")==null ){
-            position= Singleton.getSingleton().getLastCoursePosition();
+        if(intent.getStringExtra("position")==null || intent.getStringExtra("semestrePosition")==null){
+            position= Singleton.getSingleton().getLastSemesterPosition();
             positionSemestre=Singleton.getSingleton().getLastCoursePosition();
 
         }
@@ -71,6 +71,7 @@ public class ViewCourse extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         //find the course in question
@@ -130,7 +131,7 @@ public class ViewCourse extends AppCompatActivity {
                 }
             }
         });
-        //Toast.makeText( ViewCourse.this, ""+ midterms.get(1), Toast.LENGTH_LONG).show();
+
 
 
     }

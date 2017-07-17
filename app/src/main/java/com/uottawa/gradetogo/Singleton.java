@@ -164,11 +164,11 @@ public class Singleton {
     }
 
     public int getLastCoursePosition(){
-        return lastSemesterPosition;
+        return lastCoursePosition;
     }
 
     public void setLastCoursePosition(int position){
-        lastSemesterPosition =position;
+        lastCoursePosition =position;
     }
 
 }

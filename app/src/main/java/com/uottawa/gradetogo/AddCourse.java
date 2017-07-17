@@ -354,7 +354,7 @@ public class AddCourse extends AppCompatActivity {
                 i.putExtra("semesterSeason", currentSemester.getSeason());
                 i.putExtra("semesterYear", currentSemester.getYear());
                 i.putExtra("Position", semesterPosition + "");
-                //Toast.makeText( MainActivity.this, ""+position , Toast.LENGTH_LONG).show();
+                Toast.makeText( AddCourse.this, "Size course"+Singleton.getSingleton().getSemesters().get(semesterPosition).getCourse().size(), Toast.LENGTH_LONG).show();
                 //  start the activity
                 startActivity(i);
 

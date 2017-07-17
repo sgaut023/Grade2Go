@@ -209,8 +209,8 @@ public class Courses extends AppCompatActivity
                 Course clickedCourse = Singleton.getSingleton().getSemesters().get(semesterPosition).getCourse().get(position);
                 Singleton.getSingleton().setLastCoursePosition(position);
                 Intent i = new Intent(Courses.this, ViewCourse.class);
-                //i.putExtra("semestrePosition", semesterPosition+"");
-                //i.putExtra("position", position+"");
+                i.putExtra("semestrePosition", semesterPosition+"");
+                i.putExtra("position", position+"");
 
 
                 //  start the activity
