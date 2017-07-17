@@ -61,7 +61,7 @@
 
                     <TextView
                         android:id="@+id/recipe_view_text_cooktime"
-                        android:layout_width="189dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
@@ -81,7 +81,7 @@
                         android:layout_width="103dp"
                         android:layout_height="wrap_content"
                         android:gravity="bottom|right"
-                        android:paddingRight="30dp"
+                        android:paddingRight="20dp"
                         android:text="98%"
                         android:textSize="18sp" />
 
@@ -95,7 +95,7 @@
 
                     <TextView
                         android:id="@+id/recipe_view_text_preptime"
-                        android:layout_width="186dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
                         android:text="Objective:"
@@ -117,7 +117,7 @@
                         android:layout_width="99dp"
                         android:layout_height="wrap_content"
                         android:gravity="bottom|right"
-                        android:paddingRight="30dp"
+                        android:paddingRight="20dp"
                         android:text="78%"
                         android:textSize="18sp" />
 
@@ -128,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.99"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:padding="10dip">
 
@@ -178,12 +179,24 @@
                     android:background="#DCDCDC"></ListView>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/Vgraphe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.15"
-                android:text="View your grades" />
+            <LinearLayout
+                android:layout_width="375dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:gravity="center_horizontal|center"
+                android:orientation="horizontal"
+                android:paddingRight="25dp"
+                android:paddingTop="30dp">
+
+                <Button
+                    android:id="@+id/Vgraphe"
+                    android:layout_width="200dp"
+                    android:layout_height="33dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:elevation="6dp"
+                    android:text="View the graph of grades"
+                    android:textColor="@android:color/background_light" />
+            </LinearLayout>
 
         </LinearLayout>
 

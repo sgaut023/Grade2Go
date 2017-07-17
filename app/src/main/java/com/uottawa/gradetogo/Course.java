@@ -118,15 +118,22 @@ public class Course {
     public String getGrade() {
             boolean empty= true;
             double gradeTemporaire=0;
+            double total=0;
             for (int i =0; i< getGrades().size(); i++){
                 if(getGrades().get(i)!="N/A"){
                     gradeTemporaire = gradeTemporaire+ Double.parseDouble(getGrades().get(i))*
                             (getPonderations().get(i))/100;
+                    total= total + getPonderations().get(i);
                     empty = false;
 
                 }
             }
-            if(empty == false)  grade=Double.toString(gradeTemporaire);
+
+            if(empty == false)  {
+                gradeTemporaire = (gradeTemporaire/total)*100;
+                gradeTemporaire=round(gradeTemporaire, 2);
+                grade= Double.toString(gradeTemporaire);
+            }
             else grade ="N/A";
 
             return grade;
@@ -229,6 +236,27 @@ public class Course {
     public int getNumFinal(){return finals.size();}
     public int getNumOther(){return others.size();}
     public int getNumLaboratory(){return laboratories.size();}
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
+    public int isObjectiveRightPath() {
+        if (grade == "N/A") {
+            return 2;
+        } else {
+            if (Double.parseDouble(grade)>=Double.parseDouble(goal) ){
+                return 0;
+
+            }else return 1;
+
+        }
+    }
 
 
 }

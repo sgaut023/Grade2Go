@@ -47,7 +47,7 @@ public class ViewCourse extends AppCompatActivity {
         // take the course info position
 
         Intent intent = getIntent();
-        if(intent.getStringExtra("position")==null){
+        if(intent.getStringExtra("position")==null ||intent.getStringExtra("smestrePosition")==null ){
             position= Singleton.getSingleton().getLastCoursePosition();
             positionSemestre=Singleton.getSingleton().getLastCoursePosition();
 
@@ -84,13 +84,13 @@ public class ViewCourse extends AppCompatActivity {
         // This is how to change TextView dynamically
         //populate the goal
         TextView goalText = (TextView)findViewById(R.id.txt_goal);
-        if(currentCourse.getGoal().equals("N/A")){
+        if(currentCourse.getGrade().equals("N/A")){
         goalText.setText(currentCourse.getGrade() );}
-        else{ goalText.setText(currentCourse.getGrade() +"");}
+        else{ goalText.setText(currentCourse.getGrade() +"%");}
 
         //populate the grade
         TextView gradeText = (TextView)findViewById(R.id.txt_grade);
-        if(currentCourse.getGrade().equals("N/A")){
+        if(currentCourse.getGoal().equals("N/A")){
         gradeText.setText(currentCourse.getGoal() );}
         else{gradeText.setText(currentCourse.getGoal() + "%");}
 
@@ -125,7 +125,7 @@ public class ViewCourse extends AppCompatActivity {
                 }else{
 
                     Snackbar snackbar = Snackbar
-                            .make(v, "please add grade before showing the graphe", Snackbar.LENGTH_LONG);
+                            .make(v, "Please add at least one grade before viewing the graph.", Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }

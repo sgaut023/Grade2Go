@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.support.design.widget.Snackbar.make;
+
 public class AddCourse extends AppCompatActivity {
     Button mShowDialog;
     private ArrayAdapter<String> adapter;
@@ -159,7 +161,7 @@ public class AddCourse extends AppCompatActivity {
                         }
 
                         for (int j = 0; j < numOralPresentation; j++) {
-                            evaluationsName.add("Oral Presentation " + (j + 1) + ":");
+                            evaluationsName.add("Oral " + (j + 1) + ":");
                         }
 
                         for (int j = 0; j < numFinalExamen; j++) {
@@ -225,8 +227,8 @@ public class AddCourse extends AppCompatActivity {
 
         //condition pour ne pas avoir un nom vide
         if (NameCourse.length() == 0) {// si l'utilisateur n'entre pas de texte, on doit ecrire un message derreur
-            Snackbar snackbar = Snackbar
-                    .make(v, "You must enter a name for the course.", Snackbar.LENGTH_LONG);
+            Snackbar snackbar =
+                    make(v, "You must enter a name for the course.", Snackbar.LENGTH_LONG);
 
             snackbar.show();
             return;
@@ -239,8 +241,8 @@ public class AddCourse extends AppCompatActivity {
         String goalString = (textGoal.getText().toString());
 
         if (goalString.isEmpty()) {
-            Snackbar snackbar = Snackbar
-                    .make(v, "You must enter a goal for the course.", Snackbar.LENGTH_LONG);
+            Snackbar snackbar =
+                    make(v, "You must enter a goal for the course.", Snackbar.LENGTH_LONG);
             snackbar.show();
             return;
         }
@@ -249,21 +251,21 @@ public class AddCourse extends AppCompatActivity {
             goal = Double.parseDouble(goalString);
 
             if (goal < 0) {
-                Snackbar snackbar = Snackbar
-                        .make(v, "The objective must be higher or equal than 0%.", Snackbar.LENGTH_LONG);
+                Snackbar snackbar =
+                        make(v, "The objective must be higher or equal than 0%.", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 return;
             } else if (goal > 100) {
-                Snackbar snackbar = Snackbar
-                        .make(v, "The objective must be less or equal than 100%.", Snackbar.LENGTH_LONG);
+                Snackbar snackbar =
+                        make(v, "The objective must be less or equal than 100%.", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 return;
             }
         }
         //user muster enter evaluations
         if (numQuiz == 0 && numLaboratory == 0 && numProject == 0 && numFinalExamen == 0 && numOralPresentation == 0 && numMidterm == 0 && numOther == 0) {
-            Snackbar snackbar = Snackbar
-                    .make(v, "You must at least add one evaluation for this course.", Snackbar.LENGTH_LONG);
+            Snackbar snackbar =
+                    make(v, "The objective must be less or equal than 100%.", Snackbar.LENGTH_LONG);
             snackbar.show();
             return;
         } else {
@@ -280,22 +282,33 @@ public class AddCourse extends AppCompatActivity {
                 et = (EditText) list.getChildAt(i).findViewById(R.id.txt_ponderation_evaluation);
                 if (et != null) {
                     result.add(String.valueOf(et.getText()));
+                    if(String.valueOf(et.getText()).isEmpty()) {
+                            Snackbar snackbar = make(v, "You must enter a weight for each evaluation.", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            return;
+                    }
                     //le total de la ponderation
                     if (!String.valueOf(et.getText()).isEmpty()) {
                         total = total + Double.parseDouble(String.valueOf(et.getText()));
+                        if (Double.parseDouble(String.valueOf(et.getText()))>100 ||
+                                Double.parseDouble(String.valueOf(et.getText()))<=0){
+                            Snackbar snackbar = make(v, "Each weight mush be higher than 0% and lower or equal than 100% ", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            return;
+                        }
 
                     }
                 }
             }
             if (result.size() != evaluationsName.size()) {
 
-                Snackbar snackbar = Snackbar
-                        .make(v, "You must enter a weighting for each evaluation", Snackbar.LENGTH_LONG);
+                Snackbar snackbar =
+                        make(v, "You must enter a weighting for each evaluation", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 return;
             } else if (total != 100) {
-                Snackbar snackbar = Snackbar
-                        .make(v, "The total of all weights must be 100%. Currently, the total is " + total + "%.", Snackbar.LENGTH_LONG);
+                Snackbar snackbar =
+                        make(v, "The total of all weights must be 100%. Currently, the total is " + total + "%.", Snackbar.LENGTH_LONG);
                 snackbar.show();
                 return;
 
