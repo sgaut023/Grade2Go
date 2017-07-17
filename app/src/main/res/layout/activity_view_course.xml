@@ -51,10 +51,10 @@
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onClick"
         app:backgroundTint="@color/colorPrimaryDark"
+        app:fabSize="normal"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/logo_crayon" />
+        app:srcCompat="@drawable/ic_create_black_24dp" />
 
 
 </android.support.design.widget.CoordinatorLayout>

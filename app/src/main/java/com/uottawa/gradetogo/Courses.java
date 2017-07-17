@@ -3,6 +3,7 @@ package com.uottawa.gradetogo;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -171,6 +172,11 @@ public class Courses extends AppCompatActivity
             builder1.setMessage("Do you want to delete the course "+crsname.toString()+" ?");
             AlertDialog alert11 = builder1.create();
             alert11.show();
+            //changer couleur bouton
+            Button bq = alert11.getButton(DialogInterface.BUTTON_NEGATIVE);
+            bq.setTextColor(Color.parseColor("#044175"));
+            Button bn = alert11.getButton(DialogInterface.BUTTON_POSITIVE);
+            bn.setTextColor(Color.parseColor("#044175"));
             ;
         } else {
             int duration = Toast.LENGTH_SHORT;
@@ -203,8 +209,8 @@ public class Courses extends AppCompatActivity
                 Course clickedCourse = Singleton.getSingleton().getSemesters().get(semesterPosition).getCourse().get(position);
                 Singleton.getSingleton().setLastCoursePosition(position);
                 Intent i = new Intent(Courses.this, ViewCourse.class);
-                i.putExtra("semestrePosition", semesterPosition+"");
-                i.putExtra("position", position+"");
+                //i.putExtra("semestrePosition", semesterPosition+"");
+                //i.putExtra("position", position+"");
 
 
                 //  start the activity
@@ -266,12 +272,9 @@ public class Courses extends AppCompatActivity
             Intent i = new Intent(this, Settings.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_help) {
-
-        } else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_help) {}
 
 
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

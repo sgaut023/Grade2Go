@@ -43,9 +43,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //initialisation du singleton
+        Singleton.getSingleton();
         Button waste_btn = (Button) findViewById(R.id.toolbar_overflow_menu_button);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +66,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
 
-        //initialisation du singleton
-        Singleton.getSingleton();
+
         registerClickCallBack();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -294,12 +296,9 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, Settings.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_help) {
-
-        } else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_help) {}
 
 
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
