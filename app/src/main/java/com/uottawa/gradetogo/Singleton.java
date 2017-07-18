@@ -95,6 +95,7 @@ public class Singleton {
                 else if(perc >= 60 && perc <65){return "C+";}
                 else if(perc >= 55 && perc <60){return "C";}
                 else if(perc >= 50 && perc <55){return "D";}
+                else{return "E";}
         }
         return "error";
     }

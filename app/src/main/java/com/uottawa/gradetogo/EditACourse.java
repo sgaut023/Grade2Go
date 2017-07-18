@@ -393,8 +393,8 @@ public class EditACourse extends AppCompatActivity {
                 Intent i = new Intent(EditACourse.this, ViewCourse.class);
 
                 //retour page cours
-                i.putExtra("semestrePosition", positionSemestre+"");
-                i.putExtra("position", positionCours);
+                //i.putExtra("semestrePosition", positionSemestre+"");
+                //i.putExtra("position", positionCours);
 
                 //start the activity
                 startActivity(i);

@@ -47,14 +47,15 @@ public class ViewCourse extends AppCompatActivity {
         // take the course info position
 
         Intent intent = getIntent();
-        if(intent.getStringExtra("position")==null || intent.getStringExtra("semestrePosition")==null){
-            position= Singleton.getSingleton().getLastSemesterPosition();
-            positionSemestre=Singleton.getSingleton().getLastCoursePosition();
+        if(intent.getStringExtra("position")!=null && intent.getStringExtra("semestrePosition")!=null){
+
+            position = Integer.parseInt(intent.getStringExtra("position"));
+            positionSemestre = Integer.parseInt(intent.getStringExtra("semestrePosition"));
 
         }
         else {
-            position = Integer.parseInt(intent.getStringExtra("position"));
-            positionSemestre = Integer.parseInt(intent.getStringExtra("semestrePosition"));
+            position= Singleton.getSingleton().getLastCoursePosition();
+            positionSemestre=Singleton.getSingleton().getLastSemesterPosition();
         }
 
 
@@ -73,10 +74,11 @@ public class ViewCourse extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
+        //Toast.makeText( ViewCourse.this, "cours " +position + " semestre "+positionSemestre, Toast.LENGTH_LONG).show();
+        //Intent a = new Intent(AddSemester.this, MainActivity.class);
         //find the course in question
         currentCourse = Singleton.getSingleton().getSemesters().get(positionSemestre).getCourse().get(position);
-        midterms = currentCourse.getMidterms();
+       midterms = currentCourse.getMidterms();
 
         //populatelistView
         populateListView();
