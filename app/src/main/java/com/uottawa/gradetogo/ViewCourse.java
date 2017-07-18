@@ -266,7 +266,7 @@ public class ViewCourse extends AppCompatActivity {
                 gradeLetterText.setText("N/A");
 
             } else {
-                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Double.parseDouble(currentGrade)));
             }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
@@ -390,7 +390,7 @@ public class ViewCourse extends AppCompatActivity {
                 gradeLetterText.setText("N/A");
 
             }else {
-                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Integer.parseInt(currentGrade)));
+                gradeLetterText.setText("" + Singleton.getSingleton().getGrade(Double.parseDouble(currentGrade)));
             }
 
             TextView gradeText = (TextView) itemView.findViewById(R.id.txt_evulation_grade);
